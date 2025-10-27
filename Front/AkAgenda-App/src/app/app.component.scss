@@ -1,0 +1,11 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px; /* ou o tamanho desejado */
+    height: 100vh;
+    background-color: #f8f9fa; /* ou a cor que preferir */
+    z-index: 1000; /* para garantir que fique acima do conteúdo */
+    padding: 1rem;
+    overflow-y: auto;
+  }

@@ -1,0 +1,318 @@
+/* Import do Toastr */
+@import 'ngx-toastr/toastr';
+
+/* =================== TOASTS =================== */
+.toast-success {
+  background-color: #10c3bb !important;
+  color: white !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.toast-error {
+  background-color: #ec9aba !important; 
+  color: white !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.toast-warning {
+  background-color: #ebec9a !important; 
+  color: rgba(0, 0, 0, 0.39) !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.toast-close-button {
+  color: white !important;
+  opacity: 1 !important;
+}
+
+/* =================== GERAL =================== */
+body {
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* =================== CARDS =================== */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card_fin {
+  background: linear-gradient(135deg, #10c3bb, #ec9aba);
+}
+
+.custom-datepicker { font-family: 'Poppins', sans-serif; border-radius: 1rem; padding: 0.75rem; height: auto; border: 1px solid #ccc; } 
+.bs-datepicker { border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); background: #ffffff; font-family: 'Poppins', sans-serif; padding: 15px; } 
+.bs-datepicker-head { width: 100%; background: linear-gradient(to right, #10c3bb, #ec9aba); display: flex; justify-content: center; padding: 0.5rem 0; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; box-sizing: border-box; }
+.bs-datepicker-body { padding: 10px; } 
+.bs-datepicker-body table { width: 100%; } 
+.bs-datepicker-body table td span { border-radius: 50%; padding: 8px; font-size: 14px; transition: background 0.2s ease-in-out; } 
+.bs-datepicker-body table td span:hover { background-color: rgba(76, 175, 80, 0.1); /* Verde claro */ } 
+.bs-datepicker-body table td span.selected, 
+.bs-datepicker-body table td span.selected:hover { background-color: #10c3bb; color: white; } 
+.bs-datepicker .bs-datepicker-navigation { display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 0 1rem !important; width: 100% !important; box-sizing: border-box; } 
+.bs-datepicker .bs-datepicker-navigation .previous, .bs-datepicker .bs-datepicker-navigation .next { background: transparent !important; border: none !important; color: white !important; font-size: 1.5rem !important; font-weight: bold; padding: 0.25rem 0.75rem; border-radius: 50%; cursor: pointer; flex-shrink: 0; width: 40px; /* largura fixa para alinhar com .next */ text-align: center; } 
+.bs-datepicker .bs-datepicker-navigation .current { flex-grow: 1; text-align: center; font-weight: 600; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: rgba(255, 255, 255, 0.15); } .bs-datepicker .bs-datepicker-navigation .current { flex-grow: 1; text-align: center; font-weight: 600; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: rgba(255, 255, 255, 0.15); margin: 0 10px; }
+
+/* =================== BOTÕES =================== */
+.btn-outline-edit {
+  border: 2px solid #10c3bb;
+  color: #10c3bb;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  font-family: 'Raleway', serif;
+}
+
+.btn-outline-edit:hover {
+  background-color: #10c3bb;
+  color: white;
+}
+
+.btn-outline-del {
+  border: 2px solid #ec9aba;
+  color: #ec9aba;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  font-family: 'Raleway', serif;
+}
+
+.btn-outline-del:hover {
+  background-color: #ec9aba;
+  color: white;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap; /* Para não estourar em telas pequenas */
+}
+
+.btn-primary {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #10c3bb, #ec9aba);
+  border: none;
+  color: white;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ec9aba, #8d72cc);
+}
+
+
+/* =================== MODAL =================== */
+.modal-header {
+  text-align: center;
+  background: linear-gradient(135deg, #10c3bb, #ec9aba);    
+  color: white;
+}
+
+.custom-modal .modal-dialog {
+  text-align: center;
+  max-width: 90vw; /* Ajustado para celular */
+  width: 90vw;
+}
+
+/* =================== TABELAS =================== */
+.custom-table {
+  max-height: 400px;
+  overflow-y: auto;
+  display: block;
+  width: 100%;
+}
+
+.custom-table tbody tr {
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-table tbody tr:hover {
+  background-color: rgba(120, 94, 187, 0.1);
+}
+
+.custom-header {
+  background: linear-gradient(135deg, #ec9aba, #a685e2);
+  color: white;
+  font-weight: bold;
+}
+
+/* =================== CAMPOS =================== */
+
+
+.input-field input {
+  border: none;          /* remove borda */
+  outline: none;         /* remove contorno ao focar */
+  background: transparent; /* transparente para mostrar fundo da div */
+  width: 100%;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Foco: destaca levemente o container */
+.input-field:focus-within {
+  box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
+}
+
+.input-field {
+  display: flex;
+  align-items: center; /* centraliza ícone e input verticalmente */
+  width: 100%;
+  max-width: 700px;        /* largura máxima */
+  background-color: #f1f1f1; /* fundo do input */
+  border-radius: 50px;       /* cantos arredondados */
+  padding: 10px 20px;        /* espaçamento interno */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* sombra suave */
+}
+
+/* Efeito ao focar */
+.input-field:focus {
+  border-color: #10c3bb;
+  box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
+  outline: none;
+}
+
+.input-field.search-box {
+  width: 700px;
+  max-width: 100%; /* Responsivo */
+  border-radius: 50px; /* Cantos arredondados */
+  padding: 10px 20px; /* Espaçamento interno */
+  border: 1px solid #ccc; /* Borda opcional */
+  background-color: #f1f1f1; /* Fundo claro */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Efeito ao focar no input */
+.input-field.search-box:focus-within {
+  border-color: #10c3bb;
+  box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
+}
+
+.input-field.search-box.full-width {
+  width: 100%; /* Preenche o espaço disponível do contêiner */
+  max-width: 100%; /* Garante que não ultrapasse o modal */
+  border-radius: 50px; /* Cantos arredondados */
+  padding: 10px 20px; /* Espaçamento interno */
+  border: 1px solid #ccc; /* Borda */
+  background-color: #f1f1f1; /* Fundo claro */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  display: block; /* Evita conflito com flex */
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Efeito ao focar no input */
+.input-field.search-box:focus-within {
+  border-color: #10c3bb;
+  box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
+}
+
+.select-with-icon {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.select-with-icon i {
+  margin-right: 10px;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.select-with-icon select {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  appearance: none; /* remove a seta nativa do select */
+}
+
+/* =================== RESPONSIVIDADE =================== */
+
+@media (max-width: 768px) {
+  .d-flex.gap-3 {
+    flex-direction: column;
+  }
+
+  .d-flex.gap-3 > .flex-fill {
+    width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .custom-modal .modal-dialog {
+    width: 95vw;
+  }
+
+  .btn-primary {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-outline-edit,
+  .btn-outline-del {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .profile-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .custom-select-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn-primary {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .card-title {
+    font-size: 14px;
+  }
+
+  .custom-table tbody tr {
+    font-size: 14px;
+  }
+
+  .input-field.search-box {
+    width: 100%;
+    padding: 6px 10px;
+  }
+}
+

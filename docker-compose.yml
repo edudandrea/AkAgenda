@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./Back        # Pasta onde está o Dockerfile
+      dockerfile: Dockerfile
+    container_name: backend
+    expose:
+      - "80"
+    restart: always
+
+  frontend:
+    build:
+      context: ./Front
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "4200:4200"
+      - "7254:7254"
+    depends_on:
+      - backend
+    restart: always

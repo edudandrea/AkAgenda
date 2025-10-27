@@ -1,0 +1,272 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cliente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>        
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-user-gear" ></i> Lista de Clientes</h2> 
+
+    <div class="search-container">
+        <div class="input-field">
+          <i class="fas fa-search"></i>
+          <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="searchClients()" placeholder="Pesquisar cliente..." />
+        </div>
+      </div>
+  <p></p>
+  <p></p>   
+  
+  <!-- Cards de Clientes -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let client of paginatedClients">
+      <div class="card custom-card shadow-lg border-0 rounded-3 overflow-hiddenn">         
+          <div class="card-body p-4">
+              <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #0a958e;"><i class="fa-solid fa-user-tie"></i> {{ client.clientName }}</h5>
+              <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-envelope"></i> {{ client.clientEmail || 'Sem email' }}</p>
+              <ul class="list-unstyled mt-3">
+                  <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-mobile-retro"></i> {{ client.phoneNumber || '—' }}</p>
+              </ul>
+              <div class="d-flex justify-content-around mt-3">
+                  <button class="btn-outline-edit btn-sm rounded-pill px-4" style="font-family: 'Poppins', serif;" (click)="openModalEdit(templateEdit, client.clientId)">
+                      <i class="bi bi-pencil"></i> Editar
+                  </button>
+                  <button class="btn-outline-del btn-sm rounded-pill px-4" style="font-family: 'Poppins', serif;" (click)="deleteClients(client.clientId)">
+                      <i class="bi bi-trash"></i> Excluir
+                  </button>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center mt-4">
+    <button class="btn btn-primary rounded-pill mx-2" style="font-family: 'Poppins', serif;" (click)="previousPage()" [disabled]="currentPage === 1">
+      Anterior
+    </button>
+    <span class="fw-bold mx-2" >Página {{ currentPage }}</span>
+    <button class="btn btn-primary rounded-pill mx-2" (click)="nextPage()"  
+        [disabled]="currentPage >= totalPages">
+        Próxima
+      </button>
+  </div>
+  
+  <!-- Botão Novo Cliente -->
+   <div class="btn-container">
+    <button class="btn btn-primary rounded-pill mt-4" (click)="openModal(template)">
+      <i class="bi bi-plus-circle"></i> Novo Cliente
+    </button>
+  </div>
+
+<ng-template #noClients>
+    <p>Não há clientes cadastrados.</p>
+  </ng-template>
+
+<!-- Modal de Cadastro -->
+<ng-template #template>
+    <div class="modal-header">
+      <h5 class="modal-title center">Novo Cliente</h5>
+      <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
+     </div>
+     <div class="modal-body">
+    
+      <!-- Formulário para adicionar cliente -->
+      <div class="card shadow-lg p-4 rounded">
+         <form>
+          <div class="mb-3">
+            <label for="clientName" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Nome do Cliente</label>
+            <div class="input-field search-box">
+              <i class="fa-solid fa-user-tie"></i>
+              <input type="text" id="clientName" placeholder="Digite o nome" [(ngModel)]="ClientName" name="clientName" required>
+            </div>
+          </div>
+          <label for="adress" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Endereço</label>
+          <div class="mb-3">
+             <div class="input-field search-box">
+              <i class="fa-solid fa-address-book"></i>
+              <input type="adress" id="adress" placeholder="Digite o Endereço" [(ngModel)]="Address" name="adress" required>
+            </div>
+          </div>
+
+        <div class="d-flex gap-3">
+  <!-- Campo Cidade (60%) -->
+          <div style="width: 60%;">
+            <label for="city" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Cidade</label>
+            <div class="input-field search-box">
+              <i class="fa-solid fa-city"></i>
+              <input type="text" id="city" placeholder="Digite a Cidade" [(ngModel)]="City" name="city" required>
+            </div>
+          </div>
+
+          <!-- Campo Estado (40%) -->
+          <div style="width: 40%;">
+            <label for="state" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Estado</label>
+            <div class="input-field search-box">
+              <i class="fa-solid fa-globe"></i>
+              <input type="text" id="state" placeholder="Digite o Estado" [(ngModel)]="State" name="state" required>
+            </div>
+          </div>
+        </div>
+        <p></p>
+          
+        <div class="d-flex gap-3">
+          <div style="width: 60%;">
+              <label for="clientEmail" class="form-label fw-bold" style="font-family: 'Poppins', serif;">E-Mail</label>
+              <div class="search-container">
+                <div class="input-field search-box">
+                  <i class="fa-solid fa-at"></i>
+                  <input type="email" id="clientEmail" placeholder="Digite o e-mail" [(ngModel)]="ClientEmail" name="clientEmail" required>
+                </div>
+              </div>
+            </div>
+
+          <div style="width: 40%;">
+              <label for="clientPhone" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Telefone</label>
+              <div class="search-container">
+                <div class="input-field search-box">
+                  <i class="fa-solid fa-mobile-retro"></i>
+                  <input type="text" id="clientPhone" placeholder="Digite o telefone" [(ngModel)]="PhoneNumber" name="clientPhone" required>
+                </div>
+              </div>
+            </div>           
+            
+          </div>
+
+          <div class="d-flex gap-3">
+  <!-- Facebook (50%) -->
+            <div style="width: 50%;">
+              <label for="facebook" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Facebook</label>
+              <div class="search-container">              
+                <div class="input-field search-box">
+                  <i class="fa-brands fa-facebook"></i>
+                  <input type="text" id="facebook" placeholder="Digite o Facebook" [(ngModel)]="Facebook" name="facebook" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Instagram (50%) -->
+            <div style="width: 50%;">
+              <label for="instagram" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Instagram</label>
+              <div class="search-container">              
+                <div class="input-field search-box">
+                  <i class="fa-brands fa-instagram"></i>
+                  <input type="text" id="instagram" placeholder="Digite o Instagram" [(ngModel)]="Instagram" name="instagram" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="anamnese" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Anamnese</label>
+            <select class="input-field search-box" id="anamnese" [(ngModel)]="selectedAnamnese" name="anamnese" required>
+              <option *ngFor="let anamnese of anamneses" [value]="anamnese.anamneseId">{{ anamnese.anamneseName }}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="addClients()">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+    
+  </ng-template>
+
+  <ng-template #templateEdit>
+    <div class="modal-header">
+      <h5 class="modal-title" style="font-family: 'Poppins', serif;">Edite as informações</h5>
+      <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
+    </div>
+    <div class="modal-body">
+      <!-- Formulário para editar cliente -->
+      <div class="card shadow-lg p-4 rounded">
+        <h4 class="text-center mb-4" style="font-family: 'Poppins', serif;">Editar Cliente</h4>
+        <form>
+          <div class="mb-3">
+            <label for="clientName" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Nome do Cliente</label>
+            <div class="input-field search-box">
+              <i class="fa-solid fa-user-tie"></i>
+              <input type="text" id="clientName" placeholder="Digite o nome" [(ngModel)]="editedClient.clientName" name="clientName" required>
+            </div>
+          </div>
+      
+          <div class="mb-3">
+            <label for="adress" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Endereço</label>
+            <div class="input-field search-box">
+              <i class="fa-solid fa-address-book"></i>
+              <input type="adress" id="adress" placeholder="Digite o Endereço" [(ngModel)]="editedClient.address" name="adress" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Campo Cidade (70%) -->
+            <div class="col-8">
+              <label for="city" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Cidade</label>
+              <div class="input-field search-box full-width">
+                <i class="fa-solid fa-address-book"></i>
+                <input type="text" id="city" placeholder="Digite a Cidade" [(ngModel)]="editedClient.city" name="city" required>
+              </div>
+            </div>
+          
+            <!-- Campo Estado (30%) -->
+            <div class="col-4">
+              <label for="state" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Estado</label>
+              <div class="input-field search-box full-width">
+                <i class="fa-solid fa-address-book"></i>
+                <input type="text" id="state" placeholder="Digite o Estado" [(ngModel)]="editedClient.state" name="state" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+          <div class="col-6">
+            <label for="clientPhone" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Telefone</label>
+            <div class="input-field search-box full-width">
+              <i class="fa-solid fa-mobile-retro"></i>
+              <input type="text" id="clientPhone" placeholder="Digite o telefone" [(ngModel)]="editedClient.phoneNumber" name="clientPhone" required>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <label for="clientEmail" class="form-label fw-bold" style="font-family: 'Poppins', serif;">E-Mail</label>
+            <div class="input-field search-box full-width">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="email" id="clientEmail" placeholder="Digite o e-mail" [(ngModel)]="editedClient.clientEmail" name="clientEmail" required>
+            </div>
+          </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-6">
+              <label for="facebook" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Facebook</label>
+              <div class="input-field search-box full-width">
+                <i class="fa-brands fa-facebook"></i>
+                <input type="facebook" id="facebook" placeholder="Digite o Facebook" [(ngModel)]="editedClient.facebook" name="facebook" required>
+              </div>
+            </div>
+  
+            <div class="col-6">
+              <label for="instagram" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Instagram</label>
+              <div class="input-field search-box full-width">
+                <i class="fa-brands fa-instagram"></i>
+                <input type="instagram" id="instagram" placeholder="Digite o Instagram" [(ngModel)]="editedClient.instagram" name="instagram" required>
+              </div>
+            </div> 
+          </div>
+
+          <div class="mb-3">
+            <label for="anamnese" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Anamnese</label>
+            <select class="input-field search-box" id="anamnese" [(ngModel)]="editedClient.anamneseId" name="anamnese" required>
+              <option *ngFor="let anamnese of anamneses" [value]="anamnese.anamneseId">{{ anamnese.anamneseName }}</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" style="font-family: 'Poppins', serif;" (click)="editClients()">Confirmar</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>

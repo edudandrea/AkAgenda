@@ -1,0 +1,324 @@
+body {
+    display: flex;
+    min-height: 100vh;
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, #10c3bb, #ec9aba); /* Verde para Rosa */
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* ajuste conforme sua sidebar */
+    height: 100vh;
+    z-index: 1000;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.card_fin {
+    background: linear-gradient(135deg, #10c3bb, #ec9aba);
+
+}
+.sidebar a {
+    display: block;
+    color: white;
+    font-size: 16px;
+    padding: 12px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+}
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+    padding: 2rem;
+}
+.sidebar a i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.logo-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.logo-container img {
+    width: 150px; /* Ajuste o tamanho do logo */
+    border-radius: 15px; /* Arredondamento dos cantos */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Sombras para um efeito elegante */
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 8px 20px;
+    color: #ddd;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.submenu {
+    max-height: 0; /* Inicialmente invisível */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+    padding-left: 20px;
+}
+
+.submenu.show {
+    max-height: 300px; /* Ajuste conforme necessário */
+    overflow-y: auto;
+    opacity: 1;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem); /* Ajusta dinamicamente */
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.custom-datepicker {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+
+
+.bs-datepicker {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  padding: 15px;
+}
+
+.bs-datepicker-head {
+  width: 100%;
+  background: linear-gradient(to right, #10c3bb, #ec9aba);
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  box-sizing: border-box;
+}
+
+.bs-datepicker-body {
+  padding: 10px;
+}
+
+.bs-datepicker-body table {
+  width: 100%;
+}
+
+.bs-datepicker-body table td span {
+  border-radius: 50%;
+  padding: 8px;
+  font-size: 14px;
+  transition: background 0.2s ease-in-out;
+}
+
+.bs-datepicker-body table td span:hover {
+  background-color: rgba(76, 175, 80, 0.1); /* Verde claro */
+}
+
+.bs-datepicker-body table td span.selected,
+.bs-datepicker-body table td span.selected:hover {
+  background-color: #10c3bb;
+  color: white;
+}
+
+.bs-datepicker .bs-datepicker-navigation {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0 1rem !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.bs-datepicker .bs-datepicker-navigation .previous,
+.bs-datepicker .bs-datepicker-navigation .next {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 1.5rem !important;
+  font-weight: bold;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 40px; /* largura fixa para alinhar com .next */
+  text-align: center;
+}
+
+.bs-datepicker .bs-datepicker-navigation .current {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.bs-datepicker .bs-datepicker-navigation .current {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 0 10px;
+}
+
+ .input-field {
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px auto 0;
+  height: auto;  
+  border-radius: 50px;
+  display: block;
+  align-items: center;
+  padding: 0 ;
+  transition: background-color 0.3s, border 0.3s, box-shadow 0.3s;
+  border: none;
+ }
+
+.input-field i {
+  color: #acacac;
+  margin-right: 18px;
+  font-size: 1.5rem;
+  width: 30px;
+  text-align: center;
+  
+}
+ 
+.input-field input {
+  border-radius: 50px;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  color: #10c3bb;
+  font-weight: 500;
+  width: 100%;
+  height: 100%; /* para preencher o container */
+  background-color: transparent;
+  cursor: text;
+}
+
+.input-field:focus-within {
+  border: 2px solid #10c3bb;
+  box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
+  background-color: #eaf9f9;
+}
+ 
+.input-field input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.input-field.search-box {
+  width: 700px;
+  height: auto; /* <-- Tamanho reduzido */
+  background: #f1f1f1;
+  border-radius: 30px;
+  padding: 8px 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.input-field.search-box.full-width {
+  width: 100%;
+}
+
+.modal-title.center {
+  text-align: center;
+  width: 100%;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  width: 50%;
+}
+
+.custom-select {
+  width: 100%;
+  padding-left: 2.5rem; /* Espaço para o ícone */
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  appearance: none; /* Remove o estilo padrão do navegador */
+  max-width: 100%; /* Limita à largura do container pai */
+  box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+}
+
+.search-container-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #555;
+  pointer-events: none; /* Ícone não interfere no clique do select */
+  font-size: 16px;
+}
+
+bs-datepicker-container {
+  z-index: 1200 !important; /* acima do modal */
+}
+

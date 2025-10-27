@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "Hash": "aArngefI3FKk0qXjHklnmfqeBL7uwnBwGiSWziT0dvw=",
+  "Source": "AkAgenda.Api",
+  "BasePath": "_content/AkAgenda.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "AkAgenda.Api\\wwwroot",
+      "Source": "AkAgenda.Api",
+      "ContentRoot": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\",
+      "BasePath": "_content/AkAgenda.Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\uploads\\5165bbc3564b4296c70371b75c9774b0.jpg",
+      "SourceId": "AkAgenda.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\",
+      "BasePath": "_content/AkAgenda.Api",
+      "RelativePath": "uploads/5165bbc3564b4296c70371b75c9774b0.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\5165bbc3564b4296c70371b75c9774b0.jpg"
+    },
+    {
+      "Identity": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\uploads\\Captura de tela 2025-04-30 124031.png",
+      "SourceId": "AkAgenda.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\",
+      "BasePath": "_content/AkAgenda.Api",
+      "RelativePath": "uploads/Captura de tela 2025-04-30 124031.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Captura de tela 2025-04-30 124031.png"
+    },
+    {
+      "Identity": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\uploads\\default-profile.jpg",
+      "SourceId": "AkAgenda.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\",
+      "BasePath": "_content/AkAgenda.Api",
+      "RelativePath": "uploads/default-profile.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\default-profile.jpg"
+    },
+    {
+      "Identity": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\uploads\\WhatsApp Image 2025-05-19 at 21.54.46.jpeg",
+      "SourceId": "AkAgenda.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\wwwroot\\",
+      "BasePath": "_content/AkAgenda.Api",
+      "RelativePath": "uploads/WhatsApp Image 2025-05-19 at 21.54.46.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\WhatsApp Image 2025-05-19 at 21.54.46.jpeg"
+    }
+  ]
+}

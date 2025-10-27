@@ -1,0 +1,37 @@
+<button class="toggle-btn" (click)="sidebarOpen = !sidebarOpen">
+  <i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="layout" [class.sidebar-open]="sidebarOpen">
+  <nav class="sidebar">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="assets/img/logo_b.png" alt="Logo" />
+    </div>      
+
+    <h4>Menu</h4>
+    <!-- Acesso para todos os usuários -->
+    <a routerLink="/dashboard" class="nav-link"><i class="fa-solid fa-house"></i>Dashboard</a> 
+    <a routerLink="/schedules" class="nav-link"><i class="fa-solid fa-calendar-days"></i>Agendamentos</a>  
+    <a routerLink="/clientes" class="nav-link"><i class="fa-solid fa-user-gear"></i>Clientes</a> 
+
+    <!-- Acesso para usuários ADMIN -->
+    <div *ngIf="isAdmin()">
+      <a routerLink="/servicos" class="nav-link"><i class="fa-solid fa-hand-holding-medical"></i>Serviços</a>
+      <a routerLink="/anamneses" class="nav-link"><i class="fa-solid fa-hospital"></i>Anamneses</a>
+      <a routerLink="/financeiro" class="nav-link"><i class="fa-solid fa-hand-holding-dollar"></i>Financeiro</a>  
+      <a routerLink="/profissionais" class="nav-link"><i class="fas fa-user-tie"></i> Profissionais</a> 
+      <a routerLink="/users" class="nav-link"><i class="fa-solid fa-users"></i>Usuários</a> 
+    </div>              
+
+    <div class="logout-container">
+      <button class="nav-link mt-auto" (click)="onLogout()">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </nav>      
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

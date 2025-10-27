@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Back", "Back", "{11BF4459-C332-B9BD-164A-F44681F2EC0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3CAF00EF-EEE8-D88D-9D7E-C9F39A564E3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkAgenda.Api", "Back\src\AkAgenda.Api\AkAgenda.Api.csproj", "{846DDA58-34AF-704D-7E43-550E01122F29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{846DDA58-34AF-704D-7E43-550E01122F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846DDA58-34AF-704D-7E43-550E01122F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846DDA58-34AF-704D-7E43-550E01122F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846DDA58-34AF-704D-7E43-550E01122F29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3CAF00EF-EEE8-D88D-9D7E-C9F39A564E3B} = {11BF4459-C332-B9BD-164A-F44681F2EC0B}
+		{846DDA58-34AF-704D-7E43-550E01122F29} = {3CAF00EF-EEE8-D88D-9D7E-C9F39A564E3B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74F90ED4-BF97-43A4-9E5F-1AE27BB764C0}
+	EndGlobalSection
+EndGlobal

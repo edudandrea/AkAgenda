@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Agendamentos</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container mt-5">
+    <h2 class="text-center" style="font-family: 'Poppins', sans-serif;">
+      <i class="fa-solid fa-house"></i> Dashboard Diário
+    </h2>
+
+    <!-- Container flex para alinhar os dois cards lado a lado -->
+    <div class="d-flex gap-4 justify-content-center flex-wrap">
+      
+      <!-- Card: Agendamentos por Profissional -->
+      <div class="col mb-4" style="flex: 1 1 300px; max-width: 400px;">
+        <div class="card shadow-lg rounded-4 text-center p-3 d-flex flex-column justify-content-between">
+          <h6 class="text-muted mb-3" style="font-family: 'Poppins', sans-serif;">Total de Agendamentos por Profissional</h6>
+
+          <div class="mb-3" style="font-family: 'Poppins', sans-serif;">
+            <label for="profissionalSelect" class="form-label fw-semibold">Profissional</label>
+            <select
+              id="profissionalSelect"
+              class="form-select form-select-lg shadow-sm rounded-pill border-primary"
+              [(ngModel)]="profissionalSelecionadoId"
+              (change)="calcularAgendamentosPorProfissional()"
+            >
+              <option [ngValue]="null" style="text-align: center;">Todos os profissionais</option>
+              <option *ngFor="let prof of professionals" [ngValue]="prof.professionalId">
+                {{ prof.professionalName }}
+              </option>
+            </select>
+
+            <!-- Lista com totais por profissional -->
+            <div *ngFor="let prof of agendamentosPorProfissional">
+              <h5 class="fw-bold mb-1" style="text-align: center; font-family: 'Poppins', sans-serif;">{{ prof.nome }}</h5>
+              <p class="mb-3 text-primary">{{ prof.totalAgendamentos }} agendamentos</p>
+            </div>
+
+            <!-- Seletor de Período -->
+            <div class="d-flex justify-content-center gap-4 mt-4">
+              <div>
+                <label class="form-label">Data Inicial</label>
+                <input type="text"
+                      class="input-field"
+                      placeholder="Selecione uma data"
+                      bsDatepicker
+                      [(ngModel)]="dataInicioSchedule"
+                      (ngModelChange)="calcularAgendamentosPorProfissional()"
+                      [bsConfig]="bsConfig" />
+              </div>
+              <div>
+                <label class="form-label">Data Final</label>
+                <input type="text"
+                      class="input-field"
+                      placeholder="Selecione uma data"
+                      bsDatepicker
+                      [(ngModel)]="dataFimSchedule"
+                      (ngModelChange)="calcularAgendamentosPorProfissional()"
+                      [bsConfig]="bsConfig" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Agendamentos de Hoje -->
+      <div class="col-md-6 mb-4" style="flex: 1 1 300px; max-width: 400px;">
+        <div class="card_fin card shadow-lg border-0 rounded-3 overflow-hidden text-white">
+          <div class="card-body p-4 text-center">
+            <h5 class="card-title text-uppercase fw-bold">Agendamentos de Hoje</h5>
+            <h1>{{ countTodaySchedules() }}</h1>
+            <p class="card-text" style="font-family: 'Poppins', sans-serif;">Total de agendamentos realizados hoje</p>
+          </div>
+        </div>
+      </div>
+    </div>          
+  </div>
+  
+  <!-- Lista de clientes -->
+  <div class="d-flex justify-content-between mb-3">
+    <p class="lead" style="font-family: 'Poppins', sans-serif;">Clientes agendados:</p>
+  </div>
+
+  <div *ngIf="filteredSchedules.length === 0" class="text-center w-100">
+    <p class="lead text-muted" style="font-family: 'Poppins', sans-serif;">Nenhum cliente agendado para hoje.</p>
+  </div>
+
+  <!-- Cards de Agendamentos do Dia -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let dashboard of filteredSchedules">
+      <div class="card custom-card">
+        <div class="card-body">
+          <h5 class="card-title text-center text-uppercase fw-bold" style="color: #0a958e;">
+            <i class="fa-solid fa-user-tie"></i> Cliente: {{ getClientName(dashboard.clientId) }}
+          </h5>
+          <p class="card-text text-muted text-center">
+            📅 <strong>Data:</strong> {{ dashboard.scheduleDate | date: 'dd/MM/yyyy HH:mm' }}
+          </p>
+          <div class="text-center mb-3">
+            <img 
+              [src]="'https://localhost:7254' + getProfessionalPhotoPath(dashboard.professionalId)" 
+              alt="Foto do Profissional" 
+              class="profile-img">
+          </div>
+          <h5 class="card-title text-center text-uppercase fw-bold" style="color: #ec9aba;">
+            <i class="fa-solid fa-user-nurse"></i> Profissional: {{ getProfessionalName(dashboard.professionalId) }}
+          </h5>
+          <p class="card-text text-muted text-center" style="font-family: 'Poppins', sans-serif;">
+            <i class="fa-solid fa-scissors"></i> {{ getServiceName(dashboard.serviceId) }}
+          </p>
+          <p class="card-text text-muted text-center" style="font-family: 'Poppins', sans-serif;">
+            <i class="fa-solid fa-id-card"></i> {{ dashboard.scheduleDesc || '—' }}
+          </p>
+        </div>
+
+        <!-- Status do Agendamento -->
+        <div class="text-white text-center py-2"
+            [ngClass]="{
+              'bg-done': dashboard.attended,
+              'bg-warning text-dark': isAppointmentTime(dashboard.scheduleDate) && !dashboard.attended,
+              'bg-success': !isAppointmentTime(dashboard.scheduleDate) && !dashboard.attended
+            }">
+          <strong>
+              {{ isCompleted(dashboard.scheduleDate) ? 'Concluído' :
+              (isAppointmentTime(dashboard.scheduleDate) ? 'Em atendimento' : 'Confirmado') }}
+          </strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

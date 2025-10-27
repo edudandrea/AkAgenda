@@ -1,0 +1,114 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financeiro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>        
+    </style>
+</head>
+<p></p>
+
+<h2 class="text-center" style="font-family: 'Poppins', serif;"><i class="fa-duotone fa-solid fa-hand-holding-dollar" ></i> Controle Financeiro</h2> 
+<p></p>
+<p></p>
+
+<div class="container my-4">
+
+  <!-- Linha superior com dois cards lado a lado -->
+  <div class="d-flex flex-wrap gap-4 justify-content-center">
+    
+    <!-- Card: Faturamento de Hoje -->
+    <div class="flex-fill" style="min-width: 300px; max-width: 400px;">
+      <div class="card_fin card shadow-lg border-0 rounded-3 overflow-hidden text-white text-center">
+        <div class="card-body p-4">
+          <h5 class="card-title text-uppercase font-weight-bold" style="font-family: 'Poppins', serif;">
+            Faturamento de Hoje
+          </h5>
+          <h1>R$ {{ countTodayFat() | number:'1.2-2' }}</h1>
+          <p class="card-text" style="font-family: 'Poppins', serif;">Valor total faturado no dia</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card: Faturamento por Período -->
+    <div class="flex-fill" style="min-width: 300px; max-width: 500px;">
+      <div class="card shadow-lg rounded-4 text-center p-3 d-flex flex-column justify-content-between">
+        <h6 class="text-muted" style="font-family: 'Poppins', serif;">Total bruto Faturado</h6>
+        <h3 class="fw-bold text-success">R$ {{ totalFaturado | number:'1.2-2' }}</h3>
+        
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+          <div>
+            <label class="form-label" style="font-family: 'Poppins', serif;">Início:</label>
+            <input type="text" 
+                   bsDatepicker
+                   class="input-field search-box full-width"
+                   style="text-align: center;"
+                   [bsConfig]="bsConfig" 
+                   [(ngModel)]="dataInicioFat" 
+                   (ngModelChange)="calcularFaturamentoPorPeriodo()" 
+                   placeholder="Selecione uma data" />
+          </div>
+          <div>
+            <label class="form-label" style="font-family: 'Poppins', serif;">Fim:</label>
+            <input type="text" 
+                   bsDatepicker
+                   class="input-field search-box full-width"
+                   style="text-align: center;"
+                   [bsConfig]="bsConfig"
+                   [(ngModel)]="dataFimFat" 
+                   (ngModelChange)="calcularFaturamentoPorPeriodo()" 
+                   placeholder="Selecione uma data" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Linha inferior: Comissão do Profissional -->
+  <div class="mt-5">
+    <div class="card shadow-lg rounded-4 text-center p-3 w-100 d-flex flex-column justify-content-between">
+      <h6 class="text-muted" style="font-family: 'Poppins', serif;">Comissão do Profissional</h6>
+
+      <div class="mb-3">
+        <label for="profissionalComissaoSelect" class="form-label fw-semibold" style="font-family: 'Poppins', serif;">
+          Selecione um profissional
+        </label>
+        <select
+          id="profissionalComissaoSelect"
+          class="form-select form-select-lg shadow-sm rounded-pill border-primary"
+          [(ngModel)]="profissionalSelecionadoComissao"
+          (change)="calcularComissao()"
+        >
+          <option [ngValue]="null" style="font-family: 'Poppins', serif;">Todos os profissionais</option>
+          <option *ngFor="let prof of professionals" [ngValue]="prof.professionalId" style="font-family: 'Poppins', serif;">
+              {{ prof.professionalName }}
+          </option>
+        </select>
+      </div>
+
+      <h3 class="fw-bold text-success">R$ {{ comissaoCalculada | number:'1.2-2' }}</h3>    
+
+      <div class="mb-4 w-100">
+        <div class="card_fin card shadow-lg border-0 rounded-3 overflow-hidden text-white">
+          <div class="card-body p-4 text-center">
+            <h5 class="card-title text-uppercase font-weight-bold" style="font-family: 'Poppins', serif;">
+              Lucro da Empresa
+            </h5>
+            <h1>R$ {{ lucroEstabelecimento | number:'1.2-2' }}</h1>
+            <p class="card-text" style="font-family: 'Poppins', serif;">
+              Diferença entre o total faturado e a comissão
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
