@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: backend
+    env: docker
+    rootDir: Back
+    plan: free
+    envVars:
+      - key: PORT
+        value: 80
+    healthCheckPath: /
+    autoDeploy: true
+
+  - type: web
+    name: frontend
+    env: docker
+    rootDir: Front
+    plan: free
+    envVars:
+      - key: PORT
+        value: 4200
+    dependsOn:
+      - backend
+    autoDeploy: true

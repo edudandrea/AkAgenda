@@ -34,4 +34,8 @@ COPY --from=build /app/dist/AkAgenda-App /usr/share/nginx/html
 # Copiar configuração customizada do Nginx (opcional)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 4200
+# Expor porta 80 (não 4200)
+EXPOSE 80
+
+# Iniciar Nginx
+CMD ["nginx", "-g", "daemon off;"]
