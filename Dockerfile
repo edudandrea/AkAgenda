@@ -29,7 +29,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS backend-build
 WORKDIR /src
 
 # Copiar arquivos do backend
-COPY Back/src/akagenda.api/AkAgenda.Api.csproj ./AkAgenda.Api.csproj
+COPY Back/src/AkAgenda.Api/AkAgenda.Api.csproj ./AkAgenda.Api.csproj
 RUN dotnet restore ./AkAgenda.Api.csproj
 
 # Copiar todo o código do backend
