@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 export interface Anamneses {
@@ -15,7 +16,7 @@ export interface Anamneses {
 })
 export class AnamnesesService {
 
-  private apiUrl = 'http://localhost:7254/api/Anamneses';
+  private apiUrl = `${environment.apiUrl}/Anamneses`;
 
 
 constructor(private http: HttpClient) { }

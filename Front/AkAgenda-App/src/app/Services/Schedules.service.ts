@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 export interface Schedules{
   scheduleId?: number;
@@ -20,7 +21,7 @@ export interface Schedules{
 
 export class SchedulesService {
 
-  private apiUrl = 'http://localhost:7254/api/Schedule';
+  private apiUrl = `${environment.apiUrl}/Schedule`;
 
 constructor(private http: HttpClient) { }
 

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 export interface Professionals{
   professionalId: number
@@ -16,7 +17,7 @@ export interface Professionals{
   providedIn: 'root'
 })
 export class ProfessionalService {
-  private apiUrl = 'http://localhost:7254/api/professional';
+  private apiUrl = `${environment.apiUrl}/professional`;
 
 constructor(private http: HttpClient) { }
 

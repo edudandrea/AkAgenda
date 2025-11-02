@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 
 export interface Users {
   login: string;
@@ -16,7 +17,7 @@ export interface Users {
 })
 export class UsersService {
 
-  private apiUrl = 'http://localhost:7254/api/Users';
+  private apiUrl = `${environment.apiUrl}/Users`;
   
 
 constructor(private http: HttpClient) { }

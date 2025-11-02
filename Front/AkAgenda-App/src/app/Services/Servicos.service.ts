@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 export interface Servicos{
   serviceId?: number;
@@ -16,7 +17,7 @@ export class ServicosService {
 
   private servicePrices = new Map<number, number>();
 
-  private apiUrl = 'http://localhost:7254/api/Services';
+  private apiUrl = `${environment.apiUrl}/Services`;
 
 constructor(private http: HttpClient) { }
 
