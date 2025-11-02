@@ -8,7 +8,7 @@ WORKDIR /app
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 # Copiar package.json e package-lock.json do Angular
-COPY front/akagenda-app/package*.json ./
+COPY Front/AkAgenda-App/package*.json ./
 
 # Instalar dependências
 RUN npm install
@@ -17,7 +17,7 @@ RUN npm install
 RUN npm install -g @angular/cli@12.2.18
 
 # Copiar todo o código do Angular
-COPY front/akagenda-app/ ./
+COPY Front/AkAgenda-App/ ./
 
 # Build de produção
 RUN ng build --configuration production
@@ -29,14 +29,14 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS backend-build
 WORKDIR /src
 
 # Copiar arquivos do backend
-COPY back/src/akagenda.api/AkAgenda.Api.csproj ./AkAgenda.Api.csproj
+COPY Back/src/akagenda.api/AkAgenda.Api.csproj ./AkAgenda.Api.csproj
 RUN dotnet restore ./AkAgenda.Api.csproj
 
 # Copiar todo o código do backend
-COPY back/src/akagenda.api/ ./
+COPY Back/src/akagenda.api/ ./
 
 # Copiar frontend build para wwwroot do backend
-COPY --from=frontend-build /app/dist/akagenda-app ./wwwroot
+COPY --from=frontend-build /app/dist/AkAgenda-App ./wwwroot
 
 # Publish do backend
 RUN dotnet publish ./AkAgenda.Api.csproj -c Release -o /app/publish
