@@ -33,7 +33,7 @@ COPY Back/src/AkAgenda.Api/AkAgenda.Api.csproj ./AkAgenda.Api.csproj
 RUN dotnet restore ./AkAgenda.Api.csproj
 
 # Copiar todo o código do backend
-COPY Back/src/akagenda.api/ ./
+COPY Back/src/AkAgenda.Api/ ./
 
 # Copiar frontend build para wwwroot do backend
 COPY --from=frontend-build /app/dist/AkAgenda-App ./wwwroot
