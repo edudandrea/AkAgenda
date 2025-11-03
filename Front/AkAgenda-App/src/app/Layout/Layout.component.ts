@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../Services/Auth.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-Layout',
@@ -15,6 +16,7 @@ export class LayoutComponent implements OnInit {
   sidebarOpen = false;
 
   constructor(private router: Router,
+              private modalService: BsModalService,
               public authService: AuthService
   ) { }
 
@@ -23,6 +25,7 @@ export class LayoutComponent implements OnInit {
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
+    this.modalService.hide();
   }
 
   toggleClientesMenu() {

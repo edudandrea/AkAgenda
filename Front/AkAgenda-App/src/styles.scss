@@ -43,6 +43,13 @@ body {
   background: linear-gradient(135deg, #10c3bb, #ec9aba);
 }
 
+.theme-modern.bs-datepicker,
+.theme-modern .bs-datepicker,
+.theme-modern.bs-datepicker-container,
+.theme-modern .bs-datepicker-container {
+  z-index: 1100 !important; /* apenas um pouco acima do modal (z-index padrão 1050) */
+}
+
 .custom-datepicker { font-family: 'Poppins', sans-serif; border-radius: 1rem; padding: 0.75rem; height: auto; border: 1px solid #ccc; } 
 .bs-datepicker { border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); background: #ffffff; font-family: 'Poppins', sans-serif; padding: 15px; } 
 .bs-datepicker-head { width: 100%; background: linear-gradient(to right, #10c3bb, #ec9aba); display: flex; justify-content: center; padding: 0.5rem 0; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; box-sizing: border-box; }
@@ -121,6 +128,10 @@ body {
   width: 90vw;
 }
 
+.modal-content {
+  overflow: visible !important;
+}
+
 /* =================== TABELAS =================== */
 .custom-table {
   max-height: 400px;
@@ -151,12 +162,23 @@ body {
 
 
 .input-field input {
-  border: none;          /* remove borda */
-  outline: none;         /* remove contorno ao focar */
-  background: transparent; /* transparente para mostrar fundo da div */
-  width: 100%;
+  flex: 1; /* Faz o input ocupar o restante do espaço */
+  border: none;
+  outline: none;
+  background: transparent;
   font-size: 1rem;
   color: #333;
+  padding: 8px 0;
+  font-family: 'Poppins', sans-serif;
+}
+.input-field i {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1; /* Remove espaçamento extra vertical */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(16, 195, 187, 0.8);
 }
 
 /* Foco: destaca levemente o container */
@@ -173,6 +195,7 @@ body {
   border-radius: 50px;       /* cantos arredondados */
   padding: 10px 20px;        /* espaçamento interno */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* sombra suave */
+  gap: 10px;
 }
 
 /* Efeito ao focar */
@@ -202,19 +225,21 @@ body {
 }
 
 .input-field.search-box.full-width {
-  width: 100%; /* Preenche o espaço disponível do contêiner */
-  max-width: 100%; /* Garante que não ultrapasse o modal */
-  border-radius: 50px; /* Cantos arredondados */
-  padding: 10px 20px; /* Espaçamento interno */
-  border: 1px solid #ccc; /* Borda */
-  background-color: #f1f1f1; /* Fundo claro */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  display: block; /* Evita conflito com flex */
+  display: flex; /* forçar flex para alinhar ícone e input */
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 50px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   color: #333;
 }
+
 
 /* Efeito ao focar no input */
 .input-field.search-box:focus-within {

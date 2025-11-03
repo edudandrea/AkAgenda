@@ -175,7 +175,7 @@
     <h5 class="modal-title center">Novo Agendamento</h5>
     <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
   </div>   
-  <div class="modal-body"> 
+  <div class="modal-body modal-datepicker-container" #modalContainer> 
     <div class="card shadow-lg p-4 rounded">  
                 
       <form>        
@@ -237,6 +237,7 @@
                       type="text" 
                       placeholder="Selecione uma data"
                       bsDatepicker
+                      [container]="'.modal-datepicker-container'"
                       class="input-field search-box full-width"
                       [(ngModel)]="schedule.scheduleDate" 
                       [bsConfig]="bsConfig"

@@ -1,0 +1,4 @@
+.bs-datepicker,
+.bs-datepicker-container {
+  z-index: 1100 !important; /* acima do modal backdrop */
+}

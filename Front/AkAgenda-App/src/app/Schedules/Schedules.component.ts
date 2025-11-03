@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -7,6 +7,7 @@ import { Clients, ClientService } from '../Services/Client.service';
 import { Servicos, ServicosService } from '../Services/Servicos.service';
 import { Professionals, ProfessionalService } from '../Services/Professional.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 
 
 @Component({
@@ -57,9 +58,8 @@ export class SchedulesComponent implements OnInit {
   searchTerm: string = '';
   filteredClients: any[] = [];
   bsConfig!: Partial<BsDatepickerConfig>;
-
-  
-  
+  @ViewChild('modalContainer', { static: false }) modalContainer!: ElementRef;
+   
 
   
   constructor(private scheduleService: SchedulesService,
@@ -81,6 +81,7 @@ export class SchedulesComponent implements OnInit {
       dateInputFormat: 'DD/MM/YYYY',
       containerClass: 'theme-modern',
       showWeekNumbers: false,  
+      adaptivePosition: true,
       isAnimated: true    
     };
   }   

@@ -17,7 +17,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  transition: 1.8s ease-in-out; /* Animação de fundo gradiente */
+  transition: 0.5s ease-in-out; /* Animação de fundo gradiente */
   z-index: 2000;
 }
 
@@ -90,7 +90,7 @@
   position: fixed; /* sempre fixo na tela */
   top: 15px;
   left: 15px;
-  background: #0a192f;
+  background: #10c3bb;
   color: white;
   border: none;
   padding: 10px;
