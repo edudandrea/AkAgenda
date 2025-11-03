@@ -72,7 +72,8 @@
               <img 
                 [src]="'https://akagenda.onrender.com' + getProfessionalPhotoPath(schedule.professionalId)" 
                 alt="Foto do Profissional" 
-                class="profile-img">
+                style="width: 200px; height: 200px; object-fit: cover;"
+                class="img-fluid rounded-circle mx-auto d-block">
             </div>
 
           <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #ec9aba;"><i class="fa-solid fa-user-nurse"></i>: {{ getProfessionalName(schedule.professionalId) }}</h5>
