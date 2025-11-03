@@ -7,6 +7,8 @@ export interface Schedules{
   scheduleId?: number;
   clientId: number,
   clientName: string;
+  phoneNumber: string;
+  email: string;
   servicoAgendado: string;
   professional: string;
   scheduleDate: Date;

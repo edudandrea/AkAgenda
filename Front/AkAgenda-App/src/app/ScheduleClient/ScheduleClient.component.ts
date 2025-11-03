@@ -54,6 +54,8 @@ export class ScheduleClientComponent implements OnInit {
     scheduleId: 0,
     clientId: 0,
     clientName: '',
+    phoneNumber: '',
+    email: '',
     scheduleDate: new Date(),
     servicoAgendado: '',
     professional: '',
@@ -163,8 +165,10 @@ export class ScheduleClientComponent implements OnInit {
   selecionarCliente(client: any) {
     this.schedule.clientId = client.clientId;
     this.editedSchedule.clientId = client.clientId;
-    this.searchTerm = client.clientName; // Exibe o nome do cliente selecionado
-    this.filteredClients = []; // Limpa a lista após a seleção
+    this.searchTerm = client.clientName;
+    this.schedule.phoneNumber = client.phoneNumber;   // ou client.telefone, conforme o nome da propriedade
+    this.schedule.email = client.clientEmail; // Exibe o nome do cliente selecionado
+    this.filteredClients = [];    
     console.log('Cliente selecionado:', client);
   }
 
@@ -493,6 +497,8 @@ export class ScheduleClientComponent implements OnInit {
       professional: this.schedule.professional,
       scheduleDesc: this.scheduleDesc,
       bookingCount: this.schedule.bookingCount,
+      phoneNumber: this.schedule.phoneNumber,
+      email: this.schedule.email,
     };
 
     console.log('📤 Agendamento a ser enviado:', scheduleData);

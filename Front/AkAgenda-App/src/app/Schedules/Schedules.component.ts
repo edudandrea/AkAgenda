@@ -37,6 +37,8 @@ export class SchedulesComponent implements OnInit {
     scheduleId: 0,
     clientId: 0,
     clientName: '',
+    phoneNumber: '',
+    email: '',
     scheduleDate: new Date(),
     servicoAgendado: '',
     professional: '',
@@ -294,7 +296,9 @@ export class SchedulesComponent implements OnInit {
       servicoAgendado: this.schedule.servicoAgendado,
       professional: this.schedule.professional,
       scheduleDesc: this.scheduleDesc,
-      bookingCount: this.schedule.bookingCount
+      bookingCount: this.schedule.bookingCount,
+      phoneNumber: this.schedule.phoneNumber,
+      email: this.schedule.email
     };
   
     console.log('📤 Agendamento a ser enviado:', scheduleData);

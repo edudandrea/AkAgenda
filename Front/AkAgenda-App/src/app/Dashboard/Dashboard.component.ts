@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
     scheduleId: 0,
     clientId: 0,
     clientName: '',
+    phoneNumber: '',
+    email: '',
     scheduleDate: new Date(),
     servicoAgendado: '',
     professional: '',

@@ -50,7 +50,7 @@
             <label for="clientPhone" class="form-label fw-bold"style="font-family: 'Poppins', serif;">Telefone</label>
             <div class="input-field search-box full-width">
               <i class="fa-solid fa-mobile-retro"></i>
-              <input type="text" id="clientPhone" [(ngModel)]="PhoneNumber" name="clientPhone">
+              <input type="text" id="clientPhone" [(ngModel)]="schedule.phoneNumber" name="clientPhone" mask="(99) 99999-9999" readonly>
             </div>
           </div>
 
@@ -58,7 +58,7 @@
             <label for="clientEmail" class="form-label fw-bold"style="font-family: 'Poppins', serif;">E-mail</label>
             <div class="input-field search-box full-width">
               <i class="fa-solid fa-envelope"></i>
-              <input type="email" id="clientEmail" [(ngModel)]="ClientEmail" name="clientEmail">
+              <input type="email" id="clientEmail" [(ngModel)]="schedule.email" name="clientEmail" mask="email" readonly>
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@
           <label for="clientPhone" class="form-label fw-bold"style="font-family: 'Poppins', serif;">Telefone</label>
           <div class="input-field search-box full-width">
             <i class="fa-solid fa-mobile-retro"></i>
-            <input type="text" id="clientPhone" [(ngModel)]="PhoneNumber" name="clientPhone" required>
+            <input type="text" id="clientPhone" [(ngModel)]="PhoneNumber" name="clientPhone" required mask="(99) 99999-9999">
           </div>
         </div>
 
