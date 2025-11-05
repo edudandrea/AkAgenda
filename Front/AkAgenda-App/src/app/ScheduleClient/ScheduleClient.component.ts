@@ -330,7 +330,9 @@ export class ScheduleClientComponent implements OnInit {
   checkAvailableTimes(): void {
     if (this.schedule.professional && this.schedule.scheduleDate) {
       const professionalId = Number(this.schedule.professional);
-      const date = this.schedule.scheduleDate;
+      const date = typeof this.schedule.scheduleDate === 'string'
+    ? new Date(this.schedule.scheduleDate)
+    : this.schedule.scheduleDate;
 
       this.scheduleService
         .getHorariosOcupados(professionalId, date)
@@ -486,12 +488,15 @@ export class ScheduleClientComponent implements OnInit {
       return;
     }
 
+    const localDate = new Date(fullDateTime.getTime() - fullDateTime.getTimezoneOffset() * 60000);
+    const localISO = localDate.toISOString(); // ISO no horário local (sem adiantar 3h)
+
     const scheduleData = {
       clientId: this.schedule.clientId,
       clientName: selectedClient.clientName,
       serviceId: this.schedule.servicoAgendado,
       professionalId: this.schedule.professional,
-      scheduleDate: fullDateTime,
+      scheduleDate: localISO,
       clienteName: this.ClienteName,
       servicoAgendado: this.schedule.servicoAgendado,
       professional: this.schedule.professional,

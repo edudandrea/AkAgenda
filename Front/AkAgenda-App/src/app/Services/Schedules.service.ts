@@ -11,7 +11,7 @@ export interface Schedules{
   email: string;
   servicoAgendado: string;
   professional: string;
-  scheduleDate: Date;
+  scheduleDate: Date | string;
   scheduleDesc: string;
   bookingCount: number;
   attended?: boolean;

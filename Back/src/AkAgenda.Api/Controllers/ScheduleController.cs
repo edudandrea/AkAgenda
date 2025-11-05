@@ -100,10 +100,7 @@ namespace AkAgenda.Api.Controllers
                 return BadRequest("Dados inválidos.");
 
             if (string.IsNullOrEmpty(schedule.ScheduleDesc))
-                return BadRequest(new { error = "O campo scheduleDesc é obrigatório." });
-
-            // ⚠️ Converte para horário local (UTC -> Local)
-            schedule.ScheduleDate = DateTime.SpecifyKind(schedule.ScheduleDate, DateTimeKind.Utc).ToLocalTime();
+                return BadRequest(new { error = "O campo scheduleDesc é obrigatório." });            
 
             // Verifica se já existe agendamento no mesmo horário
             bool exists = _context.Schedule.Any(s =>
