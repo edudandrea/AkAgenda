@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+dfwcHTtO2HPyYZDs/v/TP4Lne4Pr6o/G5gaJU0tCRIHCCM44+ZmZDSmV6RtQoTd8fIvQhnc8mRDeejsZXQ14w==",
+  "dgSpecHash": "w3sqI2rHPaVsh6iDIcvziMeOAqRJ7+J8iRLNgKcTyXv7dPkudYXJKvmX+4dZSLdNOYOdMw328uwoPiOuQQLCqg==",
   "success": true,
-  "projectFilePath": "D:\\Dev\\AkAgenda\\back\\src\\akagenda.api\\AkAgenda.Api.csproj",
+  "projectFilePath": "C:\\Users\\Eduardo\\AkAgenda\\back\\src\\akagenda.api\\AkAgenda.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Eduardo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Eduardo\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",

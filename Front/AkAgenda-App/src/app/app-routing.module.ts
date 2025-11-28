@@ -31,6 +31,8 @@ const routes: Routes = [
       { path: 'profissionais', component: ProfessionalComponent },
       { path: 'financeiro', component: FinanceiroComponent },
       { path: 'users', component: CadastroUsuariosComponent },
+
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   },
 
@@ -42,7 +44,7 @@ const routes: Routes = [
     ]
   },
 
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  
   { path: '**', redirectTo: 'login' },  
 ];
 
