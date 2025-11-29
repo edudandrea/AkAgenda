@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Eduardo\\AkAgenda\\back\\src\\akagenda.api\\AkAgenda.Api.csproj": {}
+    "C:\\Users\\Eduardo\\AkAgenda\\Back\\src\\AkAgenda.Api\\AkAgenda.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Eduardo\\AkAgenda\\back\\src\\akagenda.api\\AkAgenda.Api.csproj": {
+    "C:\\Users\\Eduardo\\AkAgenda\\Back\\src\\AkAgenda.Api\\AkAgenda.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Eduardo\\AkAgenda\\back\\src\\akagenda.api\\AkAgenda.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Eduardo\\AkAgenda\\Back\\src\\AkAgenda.Api\\AkAgenda.Api.csproj",
         "projectName": "AkAgenda.Api",
-        "projectPath": "C:\\Users\\Eduardo\\AkAgenda\\back\\src\\akagenda.api\\AkAgenda.Api.csproj",
+        "projectPath": "C:\\Users\\Eduardo\\AkAgenda\\Back\\src\\AkAgenda.Api\\AkAgenda.Api.csproj",
         "packagesPath": "C:\\Users\\Eduardo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eduardo\\AkAgenda\\back\\src\\akagenda.api\\obj\\",
+        "outputPath": "C:\\Users\\Eduardo\\AkAgenda\\Back\\src\\AkAgenda.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Eduardo\\AppData\\Roaming\\NuGet\\NuGet.Config"
