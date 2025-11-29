@@ -5,9 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ProfessionalService } from '../Services/Professional.service';
 
 @Component({
-  selector: 'app-Professional',
-  templateUrl: './Professional.component.html',
-  styleUrls: ['./Professional.component.scss']
+    selector: 'app-Professional',
+    templateUrl: './Professional.component.html',
+    styleUrls: ['./Professional.component.scss'],
+    standalone: false
 })
 export class ProfessionalComponent implements OnInit {
   professionals: any = [] = [];

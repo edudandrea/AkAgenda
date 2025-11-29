@@ -13,41 +13,43 @@
     <!-- Acesso para todos os usuários -->
     <a routerLink="/dashboard" class="nav-link" (click)="toggleSidebar()"
       ><i class="fa-solid fa-house"></i>Dashboard</a
-    >
-    <a routerLink="/schedules" class="nav-link" (click)="toggleSidebar()"
-      ><i class="fa-solid fa-calendar-days"></i>Agendamentos</a
-    >
-    <a routerLink="/clientes" class="nav-link" (click)="toggleSidebar()"
-      ><i class="fa-solid fa-user-gear"></i>Clientes</a
-    >
+      >
+      <a routerLink="/schedules" class="nav-link" (click)="toggleSidebar()"
+        ><i class="fa-solid fa-calendar-days"></i>Agendamentos</a
+        >
+        <a routerLink="/clientes" class="nav-link" (click)="toggleSidebar()"
+          ><i class="fa-solid fa-user-gear"></i>Clientes</a
+          >
 
-    <!-- Acesso para usuários ADMIN -->
-    <div *ngIf="isAdmin()">
-      <a routerLink="/servicos" class="nav-link" (click)="toggleSidebar()"
-        ><i class="fa-solid fa-hand-holding-medical"></i>Serviços</a
-      >
-      <a routerLink="/anamneses" class="nav-link" (click)="toggleSidebar()"
-        ><i class="fa-solid fa-hospital"></i>Anamneses</a
-      >
-      <a routerLink="/financeiro" class="nav-link" (click)="toggleSidebar()"
-        ><i class="fa-solid fa-hand-holding-dollar"></i>Financeiro</a
-      >
-      <a routerLink="/profissionais" class="nav-link" (click)="toggleSidebar()"
-        ><i class="fas fa-user-tie"></i> Profissionais</a
-      >
-      <a routerLink="/users" class="nav-link" (click)="toggleSidebar()"
-        ><i class="fa-solid fa-users"></i>Usuários</a
-      >
-    </div>
+          <!-- Acesso para usuários ADMIN -->
+          @if (isAdmin()) {
+            <div>
+              <a routerLink="/servicos" class="nav-link" (click)="toggleSidebar()"
+                ><i class="fa-solid fa-hand-holding-medical"></i>Serviços</a
+                >
+                <a routerLink="/anamneses" class="nav-link" (click)="toggleSidebar()"
+                  ><i class="fa-solid fa-hospital"></i>Anamneses</a
+                  >
+                  <a routerLink="/financeiro" class="nav-link" (click)="toggleSidebar()"
+                    ><i class="fa-solid fa-hand-holding-dollar"></i>Financeiro</a
+                    >
+                    <a routerLink="/profissionais" class="nav-link" (click)="toggleSidebar()"
+                      ><i class="fas fa-user-tie"></i> Profissionais</a
+                      >
+                      <a routerLink="/users" class="nav-link" (click)="toggleSidebar()"
+                        ><i class="fa-solid fa-users"></i>Usuários</a
+                        >
+                      </div>
+                    }
 
-    <div class="logout-container">
-      <button class="nav-link mt-auto" (click)="onLogout()">
-        <i class="fa-solid fa-right-from-bracket"></i> Logout
-      </button>
-    </div>
-  </nav>
+                    <div class="logout-container">
+                      <button class="nav-link mt-auto" (click)="onLogout()">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                      </button>
+                    </div>
+                  </nav>
 
-  <main class="content">
-    <router-outlet></router-outlet>
-  </main>
-</div>
+                  <main class="content">
+                    <router-outlet></router-outlet>
+                  </main>
+                </div>

@@ -11,10 +11,11 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 
 @Component({
-  selector: 'app-Schedules',
-  templateUrl: './Schedules.component.html',
-  styleUrls: ['./Schedules.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-Schedules',
+    templateUrl: './Schedules.component.html',
+    styleUrls: ['./Schedules.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class SchedulesComponent implements OnInit {
   bsModalRef?: BsModalRef;

@@ -8,9 +8,10 @@ import { Servicos, ServicosService } from '../Services/Servicos.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
-  selector: 'app-Financeiro',
-  templateUrl: './Financeiro.component.html',
-  styleUrls: ['./Financeiro.component.scss']
+    selector: 'app-Financeiro',
+    templateUrl: './Financeiro.component.html',
+    styleUrls: ['./Financeiro.component.scss'],
+    standalone: false
 })
 export class FinanceiroComponent implements OnInit {
   totalAgendamentos: number = 0;

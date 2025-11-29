@@ -1,111 +1,113 @@
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>        
+    <style>
     </style>
-</head>
-<body>
+  </head>
+  <body>
 
-<div class="container mt-5">
-    <h2 class="text-center" style="font-family: 'Poppins', serif;">📋 Lista de Anamneses</h2> 
-    <p></p>
-   
+    <div class="container mt-5">
+      <h2 class="text-center" style="font-family: 'Poppins', serif;">📋 Lista de Anamneses</h2>
+      <p></p>
 
-    <!-- Lista de clientes -->
-    <div class="row">
-      <div class="col-md-4 mb-4" *ngFor="let anamnese of anamneses">
-        <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
-            <div class="card-body p-4">
+
+      <!-- Lista de clientes -->
+      <div class="row">
+        @for (anamnese of anamneses; track anamnese) {
+          <div class="col-md-4 mb-4">
+            <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
+              <div class="card-body p-4">
                 <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #0a958e;"><i class="fa-solid fa-notes-medical"></i> {{ anamnese.anamneseName }}</h5>
                 <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-regular fa-comment"></i> {{ anamnese.anamneseDesc || 'Descrição' }}</p>
-                <ul class="list-unstyled mt-3">                    
+                <ul class="list-unstyled mt-3">
                 </ul>
                 <div class="d-flex justify-content-around mt-3">
-                    <button class="btn-outline-edit btn-sm rounded-pill px-4" style="font-family: 'Poppins', serif;" (click)="openModalEdit(templateEdit, anamnese.anamneseId)">
-                        <i class="fa-solid fa-file-pen"></i> Editar
-                    </button>
-                    <button class="btn-outline-del btn-sm rounded-pill px-4" style="font-family: 'Poppins', serif;" (click)="deleteAnamneses(anamnese.anamneseId)">
-                        <i class="fa-solid fa-trash"></i> Excluir
-                    </button>
+                  <button class="btn-outline-edit btn-sm rounded-pill px-4" style="font-family: 'Poppins', serif;" (click)="openModalEdit(templateEdit, anamnese.anamneseId)">
+                    <i class="fa-solid fa-file-pen"></i> Editar
+                  </button>
+                  <button class="btn-outline-del btn-sm rounded-pill px-4" style="font-family: 'Poppins', serif;" (click)="deleteAnamneses(anamnese.anamneseId)">
+                    <i class="fa-solid fa-trash"></i> Excluir
+                  </button>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
+        }
       </div>
-    </div>
-    
+
       <div class="btn-container">
         <button class="btn btn-primary rounded-pill" style="font-family: 'Poppins', serif;" (click)="openModal(template)">
           <i class="bi bi-plus-circle"></i> Nova Anamnese
         </button>
       </div>
-    </div>    
-
-<ng-template #noClients>
-    <p>Não há anamneses cadastradas.</p>
-  </ng-template>
-
-<!-- Modal de Cadastro -->
-<ng-template #template>
-    <div class="modal-header">
-      <h5 class="modal-title">Nova Anamnese</h5>
-      <button type="button" class="btn-close" style="font-family: 'Poppins', serif;" (click)="bsModalRef?.hide()"></button>
     </div>
-    <div class="modal-body">
-      <!-- Formulário para adicionar cliente -->
-      <div class="card shadow-lg p-4 rounded">
-        <h4 class="text-center mb-4" style="font-family: 'Poppins', serif;">Cadastro de Anamnese</h4>
-        <form>
-             <div class="search-container">            
+
+    <ng-template #noClients>
+      <p>Não há anamneses cadastradas.</p>
+    </ng-template>
+
+    <!-- Modal de Cadastro -->
+    <ng-template #template>
+      <div class="modal-header">
+        <h5 class="modal-title">Nova Anamnese</h5>
+        <button type="button" class="btn-close" style="font-family: 'Poppins', serif;" (click)="bsModalRef?.hide()"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulário para adicionar cliente -->
+        <div class="card shadow-lg p-4 rounded">
+          <h4 class="text-center mb-4" style="font-family: 'Poppins', serif;">Cadastro de Anamnese</h4>
+          <form>
+            <div class="search-container">
               <div class="input-field search-box">
                 <i class="fa-solid fa-notes-medical"></i>
-               <input type="text" id="clientName" placeholder="Digite o nome da Anamnese" [(ngModel)]="anamneseName" name="clientName" required>
+                <input type="text" id="clientName" placeholder="Digite o nome da Anamnese" [(ngModel)]="anamneseName" name="clientName" required>
+              </div>
             </div>
-          </div>     
-          
-          <div class="search-container">
-             <div class="input-field search-box">
+
+            <div class="search-container">
+              <div class="input-field search-box">
                 <i class="fa-regular fa-comment"></i>
                 <input type="desc" id="desc" placeholder="Digite a descrição da Anamnese" [(ngModel)]="anamneseDesc" name="adress" required>
               </div>
-          </div>
-          <h1></h1>          
-          <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="addAnamneses()">Cadastrar</button>
-        </form>
-      </div>
-    </div>
-  </ng-template>
-
-  <ng-template #templateEdit>
-    <div class="modal-header">
-      <h5 class="modal-title">Edite as informações</h5>
-      <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
-    </div>
-    <div class="modal-body">
-      <!-- Formulário para adicionar cliente -->
-      <div class="card shadow-lg p-4 rounded">
-        <h4 class="text-center mb-4">Editar Anamnese</h4>
-        <form>
-          <div class="search-container">
-             <div class="input-field search-box">
-              <i class="fa-solid fa-notes-medical"></i>
-              <input type="text" id="clientName" placeholder="Digite o nome da Anamnese" [(ngModel)]="editedAnamnese.anamneseName" name="clientName" required>
             </div>
-          </div>
-      
-          <div class="search-container">
-             <div class="input-field search-box">
-              <i class="fa-regular fa-comment"></i>
-              <input type="adress" id="adress" placeholder="Digite a descrição da Anamnese" [(ngModel)]="editedAnamnese.anamneseDesc" name="adress" required>
-            </div>
-          </div>          
-
-          <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="editAnamnese()">Confirmar</button>
-        </form>
+            <h1></h1>
+            <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="addAnamneses()">Cadastrar</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </ng-template>
+    </ng-template>
+
+    <ng-template #templateEdit>
+      <div class="modal-header">
+        <h5 class="modal-title">Edite as informações</h5>
+        <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulário para adicionar cliente -->
+        <div class="card shadow-lg p-4 rounded">
+          <h4 class="text-center mb-4">Editar Anamnese</h4>
+          <form>
+            <div class="search-container">
+              <div class="input-field search-box">
+                <i class="fa-solid fa-notes-medical"></i>
+                <input type="text" id="clientName" placeholder="Digite o nome da Anamnese" [(ngModel)]="editedAnamnese.anamneseName" name="clientName" required>
+              </div>
+            </div>
+
+            <div class="search-container">
+              <div class="input-field search-box">
+                <i class="fa-regular fa-comment"></i>
+                <input type="adress" id="adress" placeholder="Digite a descrição da Anamnese" [(ngModel)]="editedAnamnese.anamneseDesc" name="adress" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="editAnamnese()">Confirmar</button>
+          </form>
+        </div>
+      </div>
+    </ng-template>

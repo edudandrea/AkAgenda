@@ -7,7 +7,7 @@ import { CadastroClientesComponent } from './CadastroClientes/CadastroClientes.c
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DashboardComponent } from './Dashboard/Dashboard.component';
 import { SchedulesComponent } from './Schedules/Schedules.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { AnamnesesComponent } from './Anamneses/Anamneses.component';
@@ -28,48 +28,34 @@ defineLocale('pt-br', ptBrLocale);
 
 
 
-@NgModule({
-  declarations: [														
-    AppComponent,
-      CadastroClientesComponent,
-      DashboardComponent,
-      SchedulesComponent,
-      AnamnesesComponent,
-      ServicosComponent,
-      ProfessionalComponent,
-      FinanceiroComponent,
-      ScheduleClientComponent,
-      SimpleLayoutComponent,
-      LayoutComponent,
-      LoginComponent,      
-      CadastroUsuariosComponent
-   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    BsDatepickerModule.forRoot(),
-    AppRoutingModule,
-    NgxSpinnerModule,
-    HttpClientModule,
-    BrowserAnimationsModule,    
-    ToastrModule.forRoot (
-      {timeOut: 5000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-      progressBar: true,
-      closeButton: true,
-    }
-  ),
-    ModalModule.forRoot(),
-    
-    
-    
-    
-
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        CadastroClientesComponent,
+        DashboardComponent,
+        SchedulesComponent,
+        AnamnesesComponent,
+        ServicosComponent,
+        ProfessionalComponent,
+        FinanceiroComponent,
+        ScheduleClientComponent,
+        SimpleLayoutComponent,
+        LayoutComponent,
+        LoginComponent,
+        CadastroUsuariosComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        BsDatepickerModule.forRoot(),
+        AppRoutingModule,
+        NgxSpinnerModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({ timeOut: 5000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+            progressBar: true,
+            closeButton: true,
+        }),
+        ModalModule.forRoot()], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { 
   constructor(private localeService: BsLocaleService) {
     this.localeService.use('pt-br');

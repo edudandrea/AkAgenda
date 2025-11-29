@@ -6,9 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../Services/Login.service';
 
 @Component({
-  selector: 'app-Login',
-  templateUrl: './Login.component.html',
-  styleUrls: ['./Login.component.scss'],
+    selector: 'app-Login',
+    templateUrl: './Login.component.html',
+    styleUrls: ['./Login.component.scss'],
+    standalone: false
 })
 export class LoginComponent implements OnInit {
   username: string = '';

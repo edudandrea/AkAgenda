@@ -14,10 +14,11 @@ import { Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
-  selector: 'app-ScheduleClient',
-  templateUrl: './ScheduleClient.component.html',
-  styleUrls: ['./ScheduleClient.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-ScheduleClient',
+    templateUrl: './ScheduleClient.component.html',
+    styleUrls: ['./ScheduleClient.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ScheduleClientComponent implements OnInit {
   bsModalRef?: BsModalRef;

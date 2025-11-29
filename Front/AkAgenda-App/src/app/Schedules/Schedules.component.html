@@ -1,42 +1,42 @@
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>        
+    <style>
     </style>
-</head>
-<body>
+  </head>
+  <body>
 
-  <div class="container mt-5">
-    <h2 class="text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-calendar-days"></i> Agendamentos</h2>
-  
-    <div class="d-flex justify-content-center gap-3">
-  <!-- Data Inicial -->
-          <div class="mb-3 w-25">
-              <label class="form-label fw-bold" style="font-family: 'Poppins'">Data Inicial</label>
-              <div class="input-group">
-                <input
-                  type="text"
-                  bsDatepicker
-                  id="startDate"
-                  class="input-field search-box full-width"
-                  placeholder="Selecione uma data"
-                  [(ngModel)]="startDate"
-                  (bsValueChange)="filterSchedules()"
-                  [bsConfig]="bsConfig"/>
-              </div>
+    <div class="container mt-5">
+      <h2 class="text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-calendar-days"></i> Agendamentos</h2>
+
+      <div class="d-flex justify-content-center gap-3">
+        <!-- Data Inicial -->
+        <div class="mb-3 w-25">
+          <label class="form-label fw-bold" style="font-family: 'Poppins'">Data Inicial</label>
+          <div class="input-group">
+            <input
+              type="text"
+              bsDatepicker
+              id="startDate"
+              class="input-field search-box full-width"
+              placeholder="Selecione uma data"
+              [(ngModel)]="startDate"
+              (bsValueChange)="filterSchedules()"
+              [bsConfig]="bsConfig"/>
             </div>
+          </div>
 
           <!-- Data Final -->
           <div class="mb-3 w-25">
             <label for="endDate" class="form-label fw-bold" style="font-family: 'Poppins', serif;">
               Data Final
             </label>
-            <div class="input-group">              
+            <div class="input-group">
               <input
                 type="text"
                 class="input-field search-box full-width"
@@ -46,327 +46,346 @@
                 [(ngModel)]="endDate"
                 (bsValueChange)="filterSchedules()"
                 [bsConfig]="bsConfig"
-              />
+                />
+              </div>
             </div>
           </div>
         </div>
-    </div> 
-   
 
-    <!-- Lista de clientes -->
-    <div class="d-flex justify-content-between mb-3">
-      <p class="lead" style="font-family: 'Poppins', serif;">Clientes agendados:</p>
-  </div>
-  
-  
-  <!-- Cards de Agendamentos -->
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let schedule of filteredSchedules">
-      <div class="card custom-card shadow-lg border-0 rounded-3 overflow-hidden">
-        <div class="card-body p-4">
-          <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #0a958e;"><i class="fa-solid fa-user-tie"></i> Cliente: {{ getClientName(schedule.clientId) }}</h5>
-          <p class="card-text text-muted text-center">
-            📅 <strong>Data:</strong> {{ schedule.scheduleDate | date: 'dd/MM/yyyy HH:mm' }}
-          </p>
-          <div class="text-center mb-3">
-              <img 
-                [src]="'https://akagenda.onrender.com' + getProfessionalPhotoPath(schedule.professionalId)" 
-                alt="Foto do Profissional" 
-                style="width: 200px; height: 200px; object-fit: cover;"
-                class="img-fluid rounded-circle mx-auto d-block">
-            </div>
 
-          <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #ec9aba;"><i class="fa-solid fa-user-nurse"></i>: {{ getProfessionalName(schedule.professionalId) }}</h5>
-          <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-scissors"></i> {{ getServiceName(schedule.serviceId) }}</p>
-          <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-id-card"></i> {{ schedule.scheduleDesc || '—' }}</p>
-
-          <div class="d-flex align-items-center justify-content-center mt-3">
-            <ng-container [ngSwitch]="schedule.attended">
-
-  <!-- Caso ainda não tenha sido marcada presença -->
-                <ng-container *ngSwitchDefault>
-                  <strong class="me-2" style="font-family: 'Poppins', serif;">Compareceu?</strong>
-                  <button class="btn-sm me-1 btn-outline-edit"
-                          (click)="toggleAttendance(schedule, true)"
-                          style="font-family: 'Poppins', serif;">
-                    Sim
-                  </button>
-                  <button class="btn-sm btn-outline-del"
-                          (click)="toggleAttendance(schedule, false)"
-                          style="font-family: 'Poppins', serif;">
-                    Não
-                  </button>
-                </ng-container>
-
-                <!-- Caso tenha marcado como compareceu -->
-                <ng-container *ngSwitchCase="true">
-                  <ng-template [ngTemplateOutlet]="compareceuTemplate"></ng-template>
-                </ng-container>
-
-                <!-- Caso tenha marcado como não compareceu -->
-                <ng-container *ngSwitchCase="false">
-                  <ng-template [ngTemplateOutlet]="naoCompareceuTemplate"></ng-template>
-                </ng-container>
-
-              </ng-container>
-
-              <!-- Templates -->
-              <ng-template #compareceuTemplate>
-                <span class="text-success fw-bold" style="font-family: 'Poppins', serif;">
-                  Compareceu
-                </span>
-              </ng-template>
-
-              <ng-template #naoCompareceuTemplate>
-                <span class="text-danger fw-bold" style="font-family: 'Poppins', serif;">
-                  Não compareceu
-                </span>
-              </ng-template>
-
-          </div>
-          <div class="d-flex justify-content-center gap-4 mt-3">
-                <button *ngIf="schedule.attended === null"
-                  class="btn-outline-edit btn-sm rounded-pill px-4"
-                  (click)="openModalEdit(templateEdit, schedule.scheduleId)">
-                  <i class="bi bi-pencil"></i> Editar
-                </button>
-          <button *ngIf="schedule.attended === null"
-                  class="btn-outline-del btn-sm rounded-pill px-4"
-                  (click)="deleteSchedules(schedule.scheduleId)">
-            <i class="bi bi-trash"></i> Excluir
-          </button>
-          <span *ngIf="schedule.attended !== null" class="text-muted fst-italic">
-            Presença registrada — edição bloqueada
-          </span>
-          </div>
+        <!-- Lista de clientes -->
+        <div class="d-flex justify-content-between mb-3">
+          <p class="lead" style="font-family: 'Poppins', serif;">Clientes agendados:</p>
         </div>
-        <div class="text-white text-center py-2"
+
+
+        <!-- Cards de Agendamentos -->
+        <div class="row">
+          @for (schedule of filteredSchedules; track schedule) {
+            <div class="col-md-4 mb-4">
+              <div class="card custom-card shadow-lg border-0 rounded-3 overflow-hidden">
+                <div class="card-body p-4">
+                  <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #0a958e;"><i class="fa-solid fa-user-tie"></i> Cliente: {{ getClientName(schedule.clientId) }}</h5>
+                  <p class="card-text text-muted text-center">
+                    📅 <strong>Data:</strong> {{ schedule.scheduleDate | date: 'dd/MM/yyyy HH:mm' }}
+                  </p>
+                  <div class="text-center mb-3">
+                    <img
+                      [src]="'https://akagenda.onrender.com' + getProfessionalPhotoPath(schedule.professionalId)"
+                      alt="Foto do Profissional"
+                      style="width: 200px; height: 200px; object-fit: cover;"
+                      class="img-fluid rounded-circle mx-auto d-block">
+                    </div>
+                    <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #ec9aba;"><i class="fa-solid fa-user-nurse"></i>: {{ getProfessionalName(schedule.professionalId) }}</h5>
+                    <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-scissors"></i> {{ getServiceName(schedule.serviceId) }}</p>
+                    <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-solid fa-id-card"></i> {{ schedule.scheduleDesc || '—' }}</p>
+                    <div class="d-flex align-items-center justify-content-center mt-3">
+                      @switch (schedule.attended) {
+                        <!-- Caso ainda não tenha sido marcada presença -->
+                        @default {
+                          <strong class="me-2" style="font-family: 'Poppins', serif;">Compareceu?</strong>
+                          <button class="btn-sm me-1 btn-outline-edit"
+                            (click)="toggleAttendance(schedule, true)"
+                            style="font-family: 'Poppins', serif;">
+                            Sim
+                          </button>
+                          <button class="btn-sm btn-outline-del"
+                            (click)="toggleAttendance(schedule, false)"
+                            style="font-family: 'Poppins', serif;">
+                            Não
+                          </button>
+                        }
+                        <!-- Caso tenha marcado como compareceu -->
+                        @case (true) {
+                          <ng-template [ngTemplateOutlet]="compareceuTemplate"></ng-template>
+                        }
+                        <!-- Caso tenha marcado como não compareceu -->
+                        @case (false) {
+                          <ng-template [ngTemplateOutlet]="naoCompareceuTemplate"></ng-template>
+                        }
+                      }
+                      <!-- Templates -->
+                      <ng-template #compareceuTemplate>
+                        <span class="text-success fw-bold" style="font-family: 'Poppins', serif;">
+                          Compareceu
+                        </span>
+                      </ng-template>
+                      <ng-template #naoCompareceuTemplate>
+                        <span class="text-danger fw-bold" style="font-family: 'Poppins', serif;">
+                          Não compareceu
+                        </span>
+                      </ng-template>
+                    </div>
+                    <div class="d-flex justify-content-center gap-4 mt-3">
+                      @if (schedule.attended === null) {
+                        <button
+                          class="btn-outline-edit btn-sm rounded-pill px-4"
+                          (click)="openModalEdit(templateEdit, schedule.scheduleId)">
+                          <i class="bi bi-pencil"></i> Editar
+                        </button>
+                      }
+                      @if (schedule.attended === null) {
+                        <button
+                          class="btn-outline-del btn-sm rounded-pill px-4"
+                          (click)="deleteSchedules(schedule.scheduleId)">
+                          <i class="bi bi-trash"></i> Excluir
+                        </button>
+                      }
+                      @if (schedule.attended !== null) {
+                        <span class="text-muted fst-italic">
+                          Presença registrada — edição bloqueada
+                        </span>
+                      }
+                    </div>
+                  </div>
+                  <div class="text-white text-center py-2"
         [ngClass]="{
           'bg-danger': schedule.attended === false,
           'bg-warning text-dark': isAppointmentTime(schedule.scheduleDate),
           'bg-success': !isAppointmentTime(schedule.scheduleDate) && !isCompleted(schedule.scheduleDate),
           'bg-done': isCompleted(schedule.scheduleDate)
         }">
-     <strong>
-       {{ schedule.attended === false ? 'Não compareceu' :
-          isCompleted(schedule.scheduleDate) ? 'Concluído' :
-          (isAppointmentTime(schedule.scheduleDate) ? 'Em atendimento' : 'Confirmado') }}
-     </strong>
-   </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Caso não haja resultados -->
-  <p *ngIf="filteredSchedules.length === 0" class="text-muted mt-3 text-center" style="font-family: 'Poppins', serif;">Nenhum agendamento encontrado para esta data.</p>
-    <div class="btn-container">
-      <button class="btn btn-primary rounded-pill" (click)="openModalNew(template)">
-        <i class="bi bi-plus-circle" style="font-family: 'Poppins', serif;"></i> Novo Agendamento
-      </button>
-     </div>
-    
-<ng-template #noClients>
-    <p>Não há cliente agendado.</p>
-  </ng-template>
-
-<!-- Modal de Agendamento -->
-<ng-template #template>  
-  <div class="modal-header">
-    <h5 class="modal-title center">Novo Agendamento</h5>
-    <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
-  </div>   
-  <div class="modal-body modal-datepicker-container" #modalContainer> 
-    <div class="card shadow-lg p-4 rounded">  
-                
-      <form>        
-        <!-- Cliente -->
-         <label for="clientSearch" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Cliente</label>
-          <div class="search-container">          
-            <div class="input-field search-box">
-              <i class="fa-solid fa-person"></i>
-              <input 
-                  type="text" 
-                  id="clientSearch" 
-                  name="clientSearch"
-                  [(ngModel)]="searchTerm"
-                  (input)="filtrarClientes()" 
-                  placeholder="Digite o nome do cliente..."/>
-            </div>
-            
-            <ul *ngIf="filteredClients.length > 0" class="list-group mt-2">
-              <li *ngFor="let client of filteredClients" class="list-group-item list-group-item-action"
-                  (click)="selecionarCliente(client)">
-                {{ client.clientName }}
-              </li>
-
-            </ul>
-          </div>       
-          
-          <div class="d-flex gap-3 flex-wrap">
-              <!-- Serviço -->
-              <div class="flex-fill input-wrapper">
-                <label for="serviceId" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Serviço</label>
-                <div class="select-with-icon">
-                  <i class="fas fa-briefcase"></i>
-                  <select id="serviceId" [(ngModel)]="schedule.servicoAgendado" name="serviceId" required>
-                    <option value="" disabled selected>Selecione um serviço</option>
-                    <option *ngFor="let service of services" [value]="service.serviceId">{{ service.serviceName }}</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- Profissional -->
-              <div class="flex-fill input-wrapper">
-                <label for="professionalId" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Profissional</label>
-                <div class="select-with-icon">
-                  <i class="fas fa-user-tie"></i>
-                  <select id="professionalId" [(ngModel)]="schedule.professional" name="professionalId" required>
-                    <option value="" disabled selected>Selecione um profissional</option>
-                    <option *ngFor="let professional of professionals" [value]="professional.professionalId">{{ professional.professionalName }}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          <p></p>  
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label fw-bold" style="font-family: 'Poppins', serif;">Data do Agendamento</label> 
-                  <div class="search-container">
-                    <input 
-                      type="text" 
-                      placeholder="Selecione uma data"
-                      bsDatepicker
-                      [container]="'.modal-datepicker-container'"
-                      class="input-field search-box full-width"
-                      [(ngModel)]="schedule.scheduleDate" 
-                      [bsConfig]="bsConfig"
-                      name="scheduleDate" required>
-                  </div>    
-                </div>          
-              </div>
-              
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label fw-bold" style="font-family: 'Poppins', serif;">Hora do Agendamento</label>
-                  <div class="search-container">                  
-                    <select class="input-field search-box full-width" [(ngModel)]="scheduleTime" name="scheduleTime" required>
-                      <option value="" disabled selected>Selecione um horário</option>
-                      <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
-                    </select>
+                    <strong>
+                      {{ schedule.attended === false ? 'Não compareceu' :
+                      isCompleted(schedule.scheduleDate) ? 'Concluído' :
+                      (isAppointmentTime(schedule.scheduleDate) ? 'Em atendimento' : 'Confirmado') }}
+                    </strong>
                   </div>
                 </div>
               </div>
-            </div>
-            
-
-            <label for="scheduleDesc" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Descrição do Agendamento</label>
-            <div class="search-container">
-              <div class="input-field search-box"><i class="fa-solid fa-file-pen"></i>
-                <input type="text" id="scheduleDesc" placeholder="Digite a descrição" [(ngModel)]="scheduleDesc" name="scheduleDesc" required>
-              </div>
-            </div>      
-                  
-
-          <!-- Botão de Agendamento -->
-          <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="addSchedule()" style="font-family: 'Poppins', serif;">Agendar</button>
-        </form>
-        </div>
-      </div>      
-   </ng-template>    
-
-  <ng-template #templateEdit>
-    <div class="modal-header">
-      <h5 class="modal-title" style="font-family: 'Poppins', serif;">Edite as informações</h5>
-      <button type="button" class="btn-close rounded-pill" (click)="bsModalRef?.hide()"></button>
-    </div>
-    <div class="modal-body">
-      <!-- Formulário para adicionar agendamento -->
-      <div class="card shadow-lg p-4 rounded">
-        <div class="mb-3">
-          <label for="clientSearch" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Cliente</label>
-          <div class="input-field search-box">
-            <i class="bi bi-person"></i>
-            <input 
-                type="text"                 
-                id="clientSearch" 
-                name="clientSearch"
-                [(ngModel)]="searchTerm"
-                (input)="filtrarClientes()" 
-                placeholder="Digite o nome do cliente..."
-              />
-
+            }
           </div>
-          
-          <ul *ngIf="filteredClients.length > 0" class="list-group mt-2">
-            <li *ngFor="let client of filteredClients" class="list-group-item list-group-item-action"
-                (click)="selecionarCliente(client)">
-              {{ client.clientName }}
-            </li>
 
-          </ul>
-        </div>
-
-          <div class="row">
-            <!-- Campo Serviço (50%) -->
-            <div class="col-6">
-              <label for="serviceId" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Serviço</label>
-              <div class="search-container">
-                 <select class="input-field search-box full-width" id="serviceId" [(ngModel)]="editedSchedule.servicoAgendado" name="serviceId" required>
-                  <option value="" disabled selected>Selecione um serviço</option>
-                  <option *ngFor="let service of services" [value]="service.serviceId" [selected]="service.serviceId === editedSchedule.serviceId" >{{ service.serviceName }}</option>
-                </select>
-              </div>
-            </div>
-          
-            <!-- Campo Profissional (50%) -->
-            <div class="col-6">
-              <label for="professionalId" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Profissional</label>
-              <div class="search-container">
-                <select  class="input-field search-box full-width" id="professionalId" [(ngModel)]="editedSchedule.professional" name="professionalId" required>
-                  <option value="" disabled selected>Selecione um profissional</option>
-                  <option *ngFor="let professional of professionals" [value]="professional.professionalId" [selected]="professional.professionalId === editedSchedule.professionalId">{{ professional.professionalName }}</option>
-                </select>
-              </div>
-            </div> 
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label fw-bold" style="font-family: 'Poppins', serif;">Data do Agendamento</label>
-                  <div class="search-container">
-                    <input type="text" 
-                           placeholder="Selecione uma data"
-                           bsDatepicker
-                           class="input-field search-box full-width" 
-                           [(ngModel)]="editedSchedule.scheduleDate" 
-                           [bsConfig]="bsConfig"
-                           name="scheduleDate" required>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label fw-bold" style="font-family: 'Poppins', serif;">Hora do Agendamento</label>
-                  <div class="search-container">
-                    <select class="input-field search-box full-width" [(ngModel)]="editedSchedule.scheduleTime" name="scheduleTime" required>
-                      <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="scheduleDesc" class="form-label fw-bold" style="font-family: 'Raleway', serif;">Descrição do Agendamento</label>
-              <div class="search-container">
-                <div class="input-field search-box"><i class="fa-solid fa-file-pen"></i>
-                <input type="text" id="scheduleDesc" placeholder="Digite a descrição" [(ngModel)]="editedSchedule.scheduleDesc" name="scheduleDesc" required>
-              </div>
-            </div>          
+          <!-- Caso não haja resultados -->
+          @if (filteredSchedules.length === 0) {
+            <p class="text-muted mt-3 text-center" style="font-family: 'Poppins', serif;">Nenhum agendamento encontrado para esta data.</p>
+          }
+          <div class="btn-container">
+            <button class="btn btn-primary rounded-pill" (click)="openModalNew(template)">
+              <i class="bi bi-plus-circle" style="font-family: 'Poppins', serif;"></i> Novo Agendamento
+            </button>
           </div>
-          <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="editSchedule()" style="font-family: 'Raleway', serif;">Confirmar</button>
-        </div>
-        </div>
-    </div>
-  </ng-template>
+
+          <ng-template #noClients>
+            <p>Não há cliente agendado.</p>
+          </ng-template>
+
+          <!-- Modal de Agendamento -->
+          <ng-template #template>
+            <div class="modal-header">
+              <h5 class="modal-title center">Novo Agendamento</h5>
+              <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
+            </div>
+            <div class="modal-body modal-datepicker-container" #modalContainer>
+              <div class="card shadow-lg p-4 rounded">
+
+                <form>
+                  <!-- Cliente -->
+                  <label for="clientSearch" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Cliente</label>
+                  <div class="search-container">
+                    <div class="input-field search-box">
+                      <i class="fa-solid fa-person"></i>
+                      <input
+                        type="text"
+                        id="clientSearch"
+                        name="clientSearch"
+                        [(ngModel)]="searchTerm"
+                        (input)="filtrarClientes()"
+                        placeholder="Digite o nome do cliente..."/>
+                      </div>
+
+                      @if (filteredClients.length > 0) {
+                        <ul class="list-group mt-2">
+                          @for (client of filteredClients; track client) {
+                            <li class="list-group-item list-group-item-action"
+                              (click)="selecionarCliente(client)">
+                              {{ client.clientName }}
+                            </li>
+                          }
+                        </ul>
+                      }
+                    </div>
+
+                    <div class="d-flex gap-3 flex-wrap">
+                      <!-- Serviço -->
+                      <div class="flex-fill input-wrapper">
+                        <label for="serviceId" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Serviço</label>
+                        <div class="select-with-icon">
+                          <i class="fas fa-briefcase"></i>
+                          <select id="serviceId" [(ngModel)]="schedule.servicoAgendado" name="serviceId" required>
+                            <option value="" disabled selected>Selecione um serviço</option>
+                            @for (service of services; track service) {
+                              <option [value]="service.serviceId">{{ service.serviceName }}</option>
+                            }
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Profissional -->
+                      <div class="flex-fill input-wrapper">
+                        <label for="professionalId" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Profissional</label>
+                        <div class="select-with-icon">
+                          <i class="fas fa-user-tie"></i>
+                          <select id="professionalId" [(ngModel)]="schedule.professional" name="professionalId" required>
+                            <option value="" disabled selected>Selecione um profissional</option>
+                            @for (professional of professionals; track professional) {
+                              <option [value]="professional.professionalId">{{ professional.professionalName }}</option>
+                            }
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <p></p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="mb-3">
+                          <label class="form-label fw-bold" style="font-family: 'Poppins', serif;">Data do Agendamento</label>
+                          <div class="search-container">
+                            <input
+                              type="text"
+                              placeholder="Selecione uma data"
+                              bsDatepicker
+                              [container]="'.modal-datepicker-container'"
+                              class="input-field search-box full-width"
+                              [(ngModel)]="schedule.scheduleDate"
+                              [bsConfig]="bsConfig"
+                              name="scheduleDate" required>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-family: 'Poppins', serif;">Hora do Agendamento</label>
+                            <div class="search-container">
+                              <select class="input-field search-box full-width" [(ngModel)]="scheduleTime" name="scheduleTime" required>
+                                <option value="" disabled selected>Selecione um horário</option>
+                                @for (time of availableTimes; track time) {
+                                  <option [value]="time">{{ time }}</option>
+                                }
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <label for="scheduleDesc" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Descrição do Agendamento</label>
+                      <div class="search-container">
+                        <div class="input-field search-box"><i class="fa-solid fa-file-pen"></i>
+                        <input type="text" id="scheduleDesc" placeholder="Digite a descrição" [(ngModel)]="scheduleDesc" name="scheduleDesc" required>
+                      </div>
+                    </div>
+
+
+                    <!-- Botão de Agendamento -->
+                    <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="addSchedule()" style="font-family: 'Poppins', serif;">Agendar</button>
+                  </form>
+                </div>
+              </div>
+            </ng-template>
+
+            <ng-template #templateEdit>
+              <div class="modal-header">
+                <h5 class="modal-title" style="font-family: 'Poppins', serif;">Edite as informações</h5>
+                <button type="button" class="btn-close rounded-pill" (click)="bsModalRef?.hide()"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Formulário para adicionar agendamento -->
+                <div class="card shadow-lg p-4 rounded">
+                  <div class="mb-3">
+                    <label for="clientSearch" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Cliente</label>
+                    <div class="input-field search-box">
+                      <i class="bi bi-person"></i>
+                      <input
+                        type="text"
+                        id="clientSearch"
+                        name="clientSearch"
+                        [(ngModel)]="searchTerm"
+                        (input)="filtrarClientes()"
+                        placeholder="Digite o nome do cliente..."
+                        />
+
+                      </div>
+
+                      @if (filteredClients.length > 0) {
+                        <ul class="list-group mt-2">
+                          @for (client of filteredClients; track client) {
+                            <li class="list-group-item list-group-item-action"
+                              (click)="selecionarCliente(client)">
+                              {{ client.clientName }}
+                            </li>
+                          }
+                        </ul>
+                      }
+                    </div>
+
+                    <div class="row">
+                      <!-- Campo Serviço (50%) -->
+                      <div class="col-6">
+                        <label for="serviceId" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Serviço</label>
+                        <div class="search-container">
+                          <select class="input-field search-box full-width" id="serviceId" [(ngModel)]="editedSchedule.servicoAgendado" name="serviceId" required>
+                            <option value="" disabled selected>Selecione um serviço</option>
+                            @for (service of services; track service) {
+                              <option [value]="service.serviceId" [selected]="service.serviceId === editedSchedule.serviceId" >{{ service.serviceName }}</option>
+                            }
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Campo Profissional (50%) -->
+                      <div class="col-6">
+                        <label for="professionalId" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Profissional</label>
+                        <div class="search-container">
+                          <select  class="input-field search-box full-width" id="professionalId" [(ngModel)]="editedSchedule.professional" name="professionalId" required>
+                            <option value="" disabled selected>Selecione um profissional</option>
+                            @for (professional of professionals; track professional) {
+                              <option [value]="professional.professionalId" [selected]="professional.professionalId === editedSchedule.professionalId">{{ professional.professionalName }}</option>
+                            }
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-family: 'Poppins', serif;">Data do Agendamento</label>
+                            <div class="search-container">
+                              <input type="text"
+                                placeholder="Selecione uma data"
+                                bsDatepicker
+                                class="input-field search-box full-width"
+                                [(ngModel)]="editedSchedule.scheduleDate"
+                                [bsConfig]="bsConfig"
+                                name="scheduleDate" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label class="form-label fw-bold" style="font-family: 'Poppins', serif;">Hora do Agendamento</label>
+                              <div class="search-container">
+                                <select class="input-field search-box full-width" [(ngModel)]="editedSchedule.scheduleTime" name="scheduleTime" required>
+                                  @for (time of availableTimes; track time) {
+                                    <option [value]="time">{{ time }}</option>
+                                  }
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="scheduleDesc" class="form-label fw-bold" style="font-family: 'Raleway', serif;">Descrição do Agendamento</label>
+                          <div class="search-container">
+                            <div class="input-field search-box"><i class="fa-solid fa-file-pen"></i>
+                            <input type="text" id="scheduleDesc" placeholder="Digite a descrição" [(ngModel)]="editedSchedule.scheduleDesc" name="scheduleDesc" required>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary rounded-pill w-100 mt-3 shadow-sm" (click)="editSchedule()" style="font-family: 'Raleway', serif;">Confirmar</button>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>

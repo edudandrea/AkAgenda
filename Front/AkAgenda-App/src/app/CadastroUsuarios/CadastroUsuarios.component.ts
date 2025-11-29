@@ -5,9 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Users, UsersService } from '../Services/Users.service';
 
 @Component({
-  selector: 'app-CadastroUsuarios',
-  templateUrl: './CadastroUsuarios.component.html',
-  styleUrls: ['./CadastroUsuarios.component.scss']
+    selector: 'app-CadastroUsuarios',
+    templateUrl: './CadastroUsuarios.component.html',
+    styleUrls: ['./CadastroUsuarios.component.scss'],
+    standalone: false
 })
 export class CadastroUsuariosComponent implements OnInit {
   bsModalRef?: BsModalRef

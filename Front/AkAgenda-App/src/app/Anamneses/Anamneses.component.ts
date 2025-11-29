@@ -5,9 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { AnamnesesService } from '../Services/Anamneses.service';
 
 @Component({
-  selector: 'app-Anamneses',
-  templateUrl: './Anamneses.component.html',
-  styleUrls: ['./Anamneses.component.scss']
+    selector: 'app-Anamneses',
+    templateUrl: './Anamneses.component.html',
+    styleUrls: ['./Anamneses.component.scss'],
+    standalone: false
 })
 export class AnamnesesComponent implements OnInit {
   bsModalRef?: BsModalRef;

@@ -9,10 +9,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
-  selector: 'app-Dashboard',
-  templateUrl: './Dashboard.component.html',
-  styleUrls: ['./Dashboard.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-Dashboard',
+    templateUrl: './Dashboard.component.html',
+    styleUrls: ['./Dashboard.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class DashboardComponent implements OnInit {
   @ViewChild('topClientsChart') topClientsChart!: ElementRef<HTMLCanvasElement>;

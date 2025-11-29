@@ -5,9 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ServicosService } from '../Services/Servicos.service';
 
 @Component({
-  selector: 'app-Servicos',
-  templateUrl: './Servicos.component.html',
-  styleUrls: ['./Servicos.component.scss']
+    selector: 'app-Servicos',
+    templateUrl: './Servicos.component.html',
+    styleUrls: ['./Servicos.component.scss'],
+    standalone: false
 })
 export class ServicosComponent implements OnInit {
   bsModalRef?: BsModalRef

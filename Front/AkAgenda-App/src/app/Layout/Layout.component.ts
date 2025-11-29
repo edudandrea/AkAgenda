@@ -4,9 +4,10 @@ import { AuthService } from '../Services/Auth.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'app-Layout',
-  templateUrl: './Layout.component.html',
-  styleUrls: ['./Layout.component.scss']
+    selector: 'app-Layout',
+    templateUrl: './Layout.component.html',
+    styleUrls: ['./Layout.component.scss'],
+    standalone: false
 })
 export class LayoutComponent implements OnInit {
 

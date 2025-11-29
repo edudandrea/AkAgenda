@@ -1,159 +1,161 @@
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>        
+    <style>
     </style>
-</head>
-<body>
+  </head>
+  <body>
 
-<div class="container mt-5">
-    <h2 class="text-center"><i class="fa-solid fa-hand-holding-medical"></i> Lista de Serviços Cadastrados:</h2>  
-    <p></p>
+    <div class="container mt-5">
+      <h2 class="text-center"><i class="fa-solid fa-hand-holding-medical"></i> Lista de Serviços Cadastrados:</h2>
+      <p></p>
 
-  <!-- Cards de Clientes -->
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let servico of Servicos">
-      <div class="card custom-card shadow-lg border-0 rounded-3 overflow-hidden">
-           <!-- Adicione a imagem aqui -->
-          <div class="card-body p-4">
-              <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #0a958e;"><i class="fa-solid fa-notes-medical"></i> {{ servico.serviceName }}</h5>
-              <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-regular fa-comment"></i> {{ servico.serviceDesc || 'Sem email' }}</p>
-              <ul class="list-unstyled mt-3">
+      <!-- Cards de Clientes -->
+      <div class="row">
+        @for (servico of Servicos; track servico) {
+          <div class="col-md-4 mb-4">
+            <div class="card custom-card shadow-lg border-0 rounded-3 overflow-hidden">
+              <!-- Adicione a imagem aqui -->
+              <div class="card-body p-4">
+                <h5 class="card-title text-center text-uppercase font-weight-bold" style="color: #0a958e;"><i class="fa-solid fa-notes-medical"></i> {{ servico.serviceName }}</h5>
+                <p class="card-text text-muted text-center" style="font-family: 'Poppins', serif;"><i class="fa-regular fa-comment"></i> {{ servico.serviceDesc || 'Sem email' }}</p>
+                <ul class="list-unstyled mt-3">
                   <p class="card-text text-muted text-center"><li><i class="fa-solid fa-clock"></i> {{ servico.serviceTime || '—' }}</li></p>
                   <p class="card-text text-muted text-center"><li><i class="fa-solid fa-sack-dollar"></i> {{ servico.price || '—' }}</li></p>
-              </ul>
-              <div class="d-flex justify-content-around mt-3">
+                </ul>
+                <div class="d-flex justify-content-around mt-3">
                   <button class="btn-outline-edit btn-sm rounded-pill px-4" style="font-family: 'Poppins', serif;" (click)="openModalEdit(templateEdit, servico.serviceId)">
-                      <i class="fa-solid fa-file-pen"></i> Editar
+                    <i class="fa-solid fa-file-pen"></i> Editar
                   </button>
                   <button class="btn-outline-del btn-sm rounded-pill px-4" style="font-family: 'Poppins', serif;" (click)="deleteServices(servico.serviceId)">
-                      <i class="fa-solid fa-trash"></i> Excluir
+                    <i class="fa-solid fa-trash"></i> Excluir
                   </button>
+                </div>
               </div>
+            </div>
           </div>
+        }
       </div>
-    </div>
-  </div>
 
-    <div class="btn-container">
-      <button class="btn btn-primary rounded-pill" (click)="openModalNew(template)">
-        <i class="bi bi-plus-circle"></i> Novo Serviço
-      </button>
-    </div> 
-<ng-template #noClients>
-    <p>Não há Serviços cadastrados.</p>
-  </ng-template>
+      <div class="btn-container">
+        <button class="btn btn-primary rounded-pill" (click)="openModalNew(template)">
+          <i class="bi bi-plus-circle"></i> Novo Serviço
+        </button>
+      </div>
+      <ng-template #noClients>
+        <p>Não há Serviços cadastrados.</p>
+      </ng-template>
 
-<!-- Modal de Cadastro -->
-<ng-template #template>
-  <div class="modal-header">
-    <h5 class="modal-title center" style="font-family: 'Poppins', serif;">Novo Serviço</h5>
-    <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
-  </div>
-  <div class="modal-body">
-    <!-- Formulário para adicionar serviços -->
-    <div class="card shadow-lg p-4 rounded">
-      <h4 class="text-center mb-4" style="font-family: 'Poppins', serif;">Cadastro de Serviços</h4>
-      <form>
-        <div class="mb-3">
-          <label for="clientName" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Nome do Serviço</label>
-          <div class="input-field search-box">    
-            <i class="fa-solid fa-pencil"></i>       
-            <input type="text" id="serviceName" placeholder="Digite o nome" [(ngModel)]="ServiceName" name="serviceName" required>
+      <!-- Modal de Cadastro -->
+      <ng-template #template>
+        <div class="modal-header">
+          <h5 class="modal-title center" style="font-family: 'Poppins', serif;">Novo Serviço</h5>
+          <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulário para adicionar serviços -->
+          <div class="card shadow-lg p-4 rounded">
+            <h4 class="text-center mb-4" style="font-family: 'Poppins', serif;">Cadastro de Serviços</h4>
+            <form>
+              <div class="mb-3">
+                <label for="clientName" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Nome do Serviço</label>
+                <div class="input-field search-box">
+                  <i class="fa-solid fa-pencil"></i>
+                  <input type="text" id="serviceName" placeholder="Digite o nome" [(ngModel)]="ServiceName" name="serviceName" required>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="adress" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Descrição do Serviço</label>
+                <div class="input-field search-box">
+                  <i class="fa-solid fa-file-pen"></i>
+                  <input type="serviceDesc" id="serviceDesc" placeholder="Digite a Descrição do Serviço" [(ngModel)]="ServiceDesc" name="serviceDesc" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Tempo (70%) -->
+                <div class="col-8">
+                  <label for="city" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Tempo de execução</label>
+                  <div class="input-field search-box">
+                    <i class="fa-solid fa-clock"></i>
+                    <input type="text" id="time" placeholder="Digite o tempo de execução" [(ngModel)]="ServiceTime" name="time" required>
+                  </div>
+                </div>
+
+                <!-- Valor (30%) -->
+                <div class="col-4">
+                  <label for="cash" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Valor do Serviço</label>
+                  <div class="input-field search-box">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                    <input type="text" id="price" placeholder="Digite o Valor do Serviço" [(ngModel)]="ServicePrice" name="price" required>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+
+              </div>
+              <button type="submit" class="btn btn-primary w-100 mt-3 shadow-sm rounded-pill" style="font-family: 'Poppins', serif;" (click)="addServices()">Cadastrar</button>
+            </form>
           </div>
         </div>
-    
-        <div class="mb-3">
-          <label for="adress" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Descrição do Serviço</label>
-          <div class="input-field search-box">
-            <i class="fa-solid fa-file-pen"></i>
-            <input type="serviceDesc" id="serviceDesc" placeholder="Digite a Descrição do Serviço" [(ngModel)]="ServiceDesc" name="serviceDesc" required>
+      </ng-template>
+
+
+      <ng-template #templateEdit>
+        <div class="modal-header">
+          <h5 class="modal-title">Edite as informações</h5>
+          <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulário para adicionar cliente -->
+          <div class="card shadow-lg p-4 rounded">
+            <h4 class="text-center mb-4">Editar Serviço</h4>
+            <form>
+              <div class="mb-3">
+                <label for="serviceName" class="form-label fw-bold">Nome do Serviço</label>
+                <div class="input-field search-box full-width">
+                  <i class="fa-solid fa-pencil"></i>
+                  <input type="text"  id="serviceName" placeholder="Digite o nome" [(ngModel)]="editedService.serviceName" name="serviceName" required>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="serviceDesc" class="form-label fw-bold">Descrição do Serviço</label>
+                <div class="input-field search-box full-width">
+                  <i class="fa-solid fa-file-pen"></i>
+                  <input type="serviceDesc"  id="serviceDesc" placeholder="Digite a descrição do serviço" [(ngModel)]="editedService.serviceDesc" name="adress" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- TEmpo (70%) -->
+                <div class="col-6">
+                  <label for="time" class="form-label fw-bold">Tempo de execução</label>
+                  <div class="input-field search-box full-width">
+                    <i class="fa-solid fa-clock"></i>
+                    <input type="text"  id="time" placeholder="Digite o tempo de execução" [(ngModel)]="editedService.serviceTime" name="serviceTime" required>
+                  </div>
+                </div>
+
+                <!-- Campo Estado (30%) -->
+                <div class="col-6">
+                  <label for="price" class="form-label fw-bold">Valor</label>
+                  <div class="input-field search-box full-width">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                    <input type="text"  id="price" placeholder="Digite o valor" [(ngModel)]="editedService.price" name="servicePrice" required>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100 mt-3 shadow-sm rounded-pill" (click)="editServices()">Confirmar</button>
+            </form>
           </div>
         </div>
-
-        <div class="row">
-          <!-- Tempo (70%) -->
-          <div class="col-8">
-            <label for="city" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Tempo de execução</label>
-            <div class="input-field search-box">
-              <i class="fa-solid fa-clock"></i>
-              <input type="text" id="time" placeholder="Digite o tempo de execução" [(ngModel)]="ServiceTime" name="time" required>
-            </div>
-          </div>
-        
-          <!-- Valor (30%) -->
-          <div class="col-4">
-            <label for="cash" class="form-label fw-bold" style="font-family: 'Poppins', serif;">Valor do Serviço</label>
-            <div class="input-field search-box">
-              <i class="fa-solid fa-sack-dollar"></i>
-              <input type="text" id="price" placeholder="Digite o Valor do Serviço" [(ngModel)]="ServicePrice" name="price" required>
-            </div>
-          </div>
-        </div>      
-       
-
-        <div class="row">
-
-        </div>        
-        <button type="submit" class="btn btn-primary w-100 mt-3 shadow-sm rounded-pill" style="font-family: 'Poppins', serif;" (click)="addServices()">Cadastrar</button>
-      </form>
-    </div>
-  </div>
-</ng-template>
-    
-
-  <ng-template #templateEdit>
-    <div class="modal-header">
-      <h5 class="modal-title">Edite as informações</h5>
-      <button type="button" class="btn-close" (click)="bsModalRef?.hide()"></button>
-    </div>
-    <div class="modal-body">
-      <!-- Formulário para adicionar cliente -->
-      <div class="card shadow-lg p-4 rounded">
-        <h4 class="text-center mb-4">Editar Serviço</h4>
-        <form>
-          <div class="mb-3">
-            <label for="serviceName" class="form-label fw-bold">Nome do Serviço</label>
-            <div class="input-field search-box full-width">
-              <i class="fa-solid fa-pencil"></i>
-              <input type="text"  id="serviceName" placeholder="Digite o nome" [(ngModel)]="editedService.serviceName" name="serviceName" required>
-            </div>
-          </div>
-      
-          <div class="mb-3">
-            <label for="serviceDesc" class="form-label fw-bold">Descrição do Serviço</label>
-            <div class="input-field search-box full-width">
-              <i class="fa-solid fa-file-pen"></i>
-              <input type="serviceDesc"  id="serviceDesc" placeholder="Digite a descrição do serviço" [(ngModel)]="editedService.serviceDesc" name="adress" required>
-            </div>
-          </div>
-
-          <div class="row">
-            <!-- TEmpo (70%) -->
-            <div class="col-6">
-              <label for="time" class="form-label fw-bold">Tempo de execução</label>
-              <div class="input-field search-box full-width">
-                <i class="fa-solid fa-clock"></i>
-                <input type="text"  id="time" placeholder="Digite o tempo de execução" [(ngModel)]="editedService.serviceTime" name="serviceTime" required>
-              </div>
-            </div>
-          
-            <!-- Campo Estado (30%) -->
-            <div class="col-6">
-              <label for="price" class="form-label fw-bold">Valor</label>
-              <div class="input-field search-box full-width">
-                <i class="fa-solid fa-sack-dollar"></i>
-                <input type="text"  id="price" placeholder="Digite o valor" [(ngModel)]="editedService.price" name="servicePrice" required>
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary w-100 mt-3 shadow-sm rounded-pill" (click)="editServices()">Confirmar</button>
-        </form>
-      </div>
-    </div>
-  </ng-template>
+      </ng-template>

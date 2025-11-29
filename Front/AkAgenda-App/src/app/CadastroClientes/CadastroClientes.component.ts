@@ -8,9 +8,10 @@ import { AnamnesesService } from '../Services/Anamneses.service';
 
 
 @Component({
-  selector: 'app-CadastroClientes',
-  templateUrl: './CadastroClientes.component.html',
-  styleUrls: ['./CadastroClientes.component.scss']
+    selector: 'app-CadastroClientes',
+    templateUrl: './CadastroClientes.component.html',
+    styleUrls: ['./CadastroClientes.component.scss'],
+    standalone: false
 })
 export class CadastroClientesComponent implements OnInit {
   bsModalRef?: BsModalRef
