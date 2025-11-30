@@ -1,3 +1,6 @@
+/* =================== FONTES GERAIS =================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 /* Import do Toastr */
 @import 'ngx-toastr/toastr';
 
@@ -26,42 +29,163 @@
 }
 
 /* =================== GERAL =================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #ffffff;
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  color: #333;
+}
+
+/* Layout base para páginas internas (opcional) */
+.app-page {
+  padding: 24px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffffff, #f7f8ff);
+}
+
+/* Títulos padrão de páginas */
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
 }
 
 /* =================== CARDS =================== */
 .card {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
 }
 
 .card_fin {
   background: linear-gradient(135deg, #10c3bb, #ec9aba);
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
 }
 
+.card-header {
+  background: transparent;
+  border-bottom: none;
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* =================== DATEPICKER (ngx-bootstrap) =================== */
 .theme-modern.bs-datepicker,
 .theme-modern .bs-datepicker,
 .theme-modern.bs-datepicker-container,
 .theme-modern .bs-datepicker-container {
-  z-index: 1100 !important; /* apenas um pouco acima do modal (z-index padrão 1050) */
+  z-index: 1100 !important;
 }
 
-.custom-datepicker { font-family: 'Poppins', sans-serif; border-radius: 1rem; padding: 0.75rem; height: auto; border: 1px solid #ccc; } 
-.bs-datepicker { border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); background: #ffffff; font-family: 'Poppins', sans-serif; padding: 15px; } 
-.bs-datepicker-head { width: 100%; background: linear-gradient(to right, #10c3bb, #ec9aba); display: flex; justify-content: center; padding: 0.5rem 0; border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem; box-sizing: border-box; }
-.bs-datepicker-body { padding: 10px; } 
-.bs-datepicker-body table { width: 100%; } 
-.bs-datepicker-body table td span { border-radius: 50%; padding: 8px; font-size: 14px; transition: background 0.2s ease-in-out; } 
-.bs-datepicker-body table td span:hover { background-color: rgba(76, 175, 80, 0.1); /* Verde claro */ } 
-.bs-datepicker-body table td span.selected, 
-.bs-datepicker-body table td span.selected:hover { background-color: #10c3bb; color: white; } 
-.bs-datepicker .bs-datepicker-navigation { display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 0 1rem !important; width: 100% !important; box-sizing: border-box; } 
-.bs-datepicker .bs-datepicker-navigation .previous, .bs-datepicker .bs-datepicker-navigation .next { background: transparent !important; border: none !important; color: white !important; font-size: 1.5rem !important; font-weight: bold; padding: 0.25rem 0.75rem; border-radius: 50%; cursor: pointer; flex-shrink: 0; width: 40px; /* largura fixa para alinhar com .next */ text-align: center; } 
-.bs-datepicker .bs-datepicker-navigation .current { flex-grow: 1; text-align: center; font-weight: 600; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: rgba(255, 255, 255, 0.15); } .bs-datepicker .bs-datepicker-navigation .current { flex-grow: 1; text-align: center; font-weight: 600; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: rgba(255, 255, 255, 0.15); margin: 0 10px; }
+.custom-datepicker {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.bs-datepicker {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  padding: 15px;
+}
+
+.bs-datepicker-head {
+  width: 100%;
+  background: linear-gradient(to right, #10c3bb, #ec9aba);
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  box-sizing: border-box;
+}
+
+.bs-datepicker-body {
+  padding: 10px;
+}
+
+.bs-datepicker-body table {
+  width: 100%;
+}
+
+.bs-datepicker-body table td span {
+  border-radius: 50%;
+  padding: 8px;
+  font-size: 14px;
+  transition: background 0.2s ease-in-out;
+}
+
+.bs-datepicker-body table td span:hover {
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.bs-datepicker-body table td span.selected,
+.bs-datepicker-body table td span.selected:hover {
+  background-color: #10c3bb;
+  color: white;
+}
+
+.bs-datepicker .bs-datepicker-navigation {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0 1rem !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.bs-datepicker .bs-datepicker-navigation .previous,
+.bs-datepicker .bs-datepicker-navigation .next {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 1.5rem !important;
+  font-weight: bold;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 40px;
+  text-align: center;
+}
+
+.bs-datepicker .bs-datepicker-navigation .current {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 0 10px;
+}
 
 /* =================== BOTÕES =================== */
 .btn-outline-edit {
@@ -69,7 +193,9 @@ body {
   color: #10c3bb;
   background-color: transparent;
   transition: all 0.3s ease;
-  font-family: 'Raleway', serif;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 30px;
+  padding: 6px 14px;
 }
 
 .btn-outline-edit:hover {
@@ -82,7 +208,9 @@ body {
   color: #ec9aba;
   background-color: transparent;
   transition: all 0.3s ease;
-  font-family: 'Raleway', serif;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 30px;
+  padding: 6px 14px;
 }
 
 .btn-outline-del:hover {
@@ -94,42 +222,53 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
-  flex-wrap: wrap; /* Para não estourar em telas pequenas */
+  flex-wrap: wrap;
 }
 
+/* Botão principal - mesmo gradiente do seu tema, mas mais “premium” */
 .btn-primary {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 16px auto;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 999px;
   background: linear-gradient(135deg, #10c3bb, #ec9aba);
   border: none;
   color: white;
-  transition: 0.3s;
+  transition: 0.3s ease;
   text-align: center;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(16, 195, 187, 0.35);
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #ec9aba, #8d72cc);
+  box-shadow: 0 10px 26px rgba(236, 154, 186, 0.45);
 }
-
 
 /* =================== MODAL =================== */
 .modal-header {
   text-align: center;
   background: linear-gradient(135deg, #10c3bb, #ec9aba);    
   color: white;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .custom-modal .modal-dialog {
   text-align: center;
-  max-width: 90vw; /* Ajustado para celular */
+  max-width: 90vw;
   width: 90vw;
 }
 
 .modal-content {
   overflow: visible !important;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
 }
 
 /* =================== TABELAS =================== */
@@ -149,7 +288,7 @@ body {
 }
 
 .custom-table tbody tr:hover {
-  background-color: rgba(120, 94, 187, 0.1);
+  background-color: rgba(120, 94, 187, 0.08);
 }
 
 .custom-header {
@@ -158,11 +297,31 @@ body {
   font-weight: bold;
 }
 
-/* =================== CAMPOS =================== */
+/* =================== CAMPOS / INPUTS =================== */
 
+.input-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  background-color: #f1f1f1;
+  border-radius: 50px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.input-field i {
+  font-size: 1.2rem;
+  color: rgba(16, 195, 187, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .input-field input {
-  flex: 1; /* Faz o input ocupar o restante do espaço */
+  flex: 1;
   border: none;
   outline: none;
   background: transparent;
@@ -171,82 +330,38 @@ body {
   padding: 8px 0;
   font-family: 'Poppins', sans-serif;
 }
-.input-field i {
-  font-size: 1.2rem;
-  color: #666;
-  line-height: 1; /* Remove espaçamento extra vertical */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(16, 195, 187, 0.8);
-}
 
 /* Foco: destaca levemente o container */
 .input-field:focus-within {
   box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
-}
-
-.input-field {
-  display: flex;
-  align-items: center; /* centraliza ícone e input verticalmente */
-  width: 100%;
-  max-width: 700px;        /* largura máxima */
-  background-color: #f1f1f1; /* fundo do input */
-  border-radius: 50px;       /* cantos arredondados */
-  padding: 10px 20px;        /* espaçamento interno */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* sombra suave */
-  gap: 10px;
-}
-
-/* Efeito ao focar */
-.input-field:focus {
   border-color: #10c3bb;
-  box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
-  outline: none;
 }
 
+/* Search box mais larga */
 .input-field.search-box {
   width: 700px;
-  max-width: 100%; /* Responsivo */
-  border-radius: 50px; /* Cantos arredondados */
-  padding: 10px 20px; /* Espaçamento interno */
-  border: 1px solid #ccc; /* Borda opcional */
-  background-color: #f1f1f1; /* Fundo claro */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  display: flex;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-/* Efeito ao focar no input */
-.input-field.search-box:focus-within {
-  border-color: #10c3bb;
-  box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
-}
-
-.input-field.search-box.full-width {
-  display: flex; /* forçar flex para alinhar ícone e input */
-  align-items: center;
-  width: 100%;
   max-width: 100%;
   border-radius: 50px;
   padding: 10px 20px;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
   transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  color: #333;
 }
 
+.input-field.search-box.full-width {
+  width: 100%;
+  max-width: 100%;
+}
 
-/* Efeito ao focar no input */
 .input-field.search-box:focus-within {
   border-color: #10c3bb;
   box-shadow: 0 0 8px rgba(16, 195, 187, 0.5);
 }
 
+/* Select com ícone */
 .select-with-icon {
   display: flex;
   align-items: center;
@@ -273,20 +388,10 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   color: #333;
-  appearance: none; /* remove a seta nativa do select */
+  appearance: none;
 }
 
 /* =================== RESPONSIVIDADE =================== */
-
-@media (max-width: 768px) {
-  .d-flex.gap-3 {
-    flex-direction: column;
-  }
-
-  .d-flex.gap-3 > .flex-fill {
-    width: 100%;
-  }
-}
 
 @media (max-width: 992px) {
   .custom-modal .modal-dialog {
@@ -295,7 +400,7 @@ body {
 
   .btn-primary {
     font-size: 14px;
-    padding: 8px 12px;
+    padding: 8px 14px;
   }
 }
 
@@ -319,6 +424,19 @@ body {
   .custom-select-wrapper {
     width: 100%;
   }
+
+  .d-flex.gap-3 {
+    flex-direction: column;
+  }
+
+  .d-flex.gap-3 > .flex-fill {
+    width: 100%;
+  }
+
+  .input-field.search-box {
+    width: 100%;
+    padding: 8px 12px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -334,10 +452,4 @@ body {
   .custom-table tbody tr {
     font-size: 14px;
   }
-
-  .input-field.search-box {
-    width: 100%;
-    padding: 6px 10px;
-  }
 }
-

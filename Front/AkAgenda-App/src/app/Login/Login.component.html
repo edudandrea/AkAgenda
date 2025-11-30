@@ -1,39 +1,17 @@
 <div class="container">
   <div class="forms-container">
     <div class="signin">
-      <form (ngSubmit)="onLogin()" class="sign-in-form">
-        <img src="assets/img/Logo.png" alt="Logo" class="form-logo" />
+      <form (ngSubmit)="onLogin()" class="sign-in-form"> <img src="assets/img/Logo.png" alt="Logo" class="form-logo" />
         <h2 class="title">Acessar</h2>
-        <div class="input-field">
-          <i class="fas fa-user"></i>
-          <input
-            type="text"
-            placeholder="Usuário"
-            name="usuario"
-            [(ngModel)]="username"
-            required
-            autocomplete="username"
-          />
-        </div>
-        <div class="input-field">
-          <i class="fas fa-lock"></i>
-          <input
-            type="password"
-            placeholder="Senha"
-            name="senha"
-            [(ngModel)]="password"
-            required
-            autocomplete="current-password"
-          />
-        </div>
-        <button class="btn solid" type="submit">Entrar</button>
+        <div class="input-field"> <i class="fas fa-user"></i> <input type="text" placeholder="Usuário" name="usuario"
+            [(ngModel)]="username" required autocomplete="username" /> </div>
+        <div class="input-field"> <i class="fas fa-lock"></i> <input type="password" placeholder="Senha" name="senha"
+            [(ngModel)]="password" required autocomplete="current-password" /> </div> <button class="btn solid"
+          type="submit">Entrar</button>
       </form>
     </div>
   </div>
-
   <div class="panels-container">
-    <div class="panel left-panel">
-      <img src="assets/img/log.svg" class="image" alt="Ilustração" />
-    </div>
+    <div class="panel left-panel"> <img src="assets/img/log.svg" class="image" alt="Ilustração" /> </div>
   </div>
 </div>
